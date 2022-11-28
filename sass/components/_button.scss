@@ -1,0 +1,30 @@
+@import "variables";
+
+.btn{
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: none;
+    transition: 0.3s border, 0.3s background-color, 0.3s color;
+    font-weight: 600;
+    text-transform: uppercase;
+    &-primary{
+        border: 2px solid $primary-color;
+        color: $primary-color;
+        &:hover{
+            background-color: $primary-color;
+            border-color: $inner-primary-color;
+            color: $inner-primary-color;
+        }
+    }
+    &-secondary{
+        border: 2px solid $secondary-color;
+        &:hover{
+            background-color: $secondary-color;
+            color: $inner-primary-color;
+        }
+    }
+    &:hover{
+        background-color: none;
+        cursor: pointer;
+    }
+}
