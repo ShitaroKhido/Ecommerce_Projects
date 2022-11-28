@@ -1,0 +1,28 @@
+#login{
+    width: 16rem;
+    height: 18rem;
+    border: 2px solid #00ABB3;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 20px;
+    margin: auto;
+    gap: 20px;
+}
+#login > input, #mode{
+    padding: 8px;
+    border: none;
+    border-bottom: 2px solid #eaeaee;
+    transition: 0.3s border-bottom-color;
+    -webkit-transition: 0.3s border-bottom-color;
+}
+#login > input:focus{
+    outline: none;
+    border-bottom-color: #00ABB3 ;
+}
+#forget-pass{
+    text-decoration: none;
+    color: #3C4048;
+    font-size: 12px;
+    text-align: right;
+}

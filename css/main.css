@@ -151,10 +151,10 @@ body {
   height: -moz-fit-content;
   height: fit-content;
   flex: 1;
+  padding: 10%;
 }
 
 .card-container {
-  margin: 10%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }/*# sourceMappingURL=main.css.map */
