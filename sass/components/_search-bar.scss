@@ -1,0 +1,14 @@
+@import "./variables";
+.search{
+    #search-bar{
+        padding: 8px 10px;
+        border: none;
+        border-bottom: 2px solid #eaeaee;
+        width: 18rem;
+        transition: 0.3s border;
+        &:focus{
+            outline: none;
+            border-bottom-color: $secondary-color;
+        }
+}
+}

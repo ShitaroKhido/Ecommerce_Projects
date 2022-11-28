@@ -66,6 +66,18 @@ body {
   cursor: pointer;
 }
 
+.search #search-bar {
+  padding: 8px 10px;
+  border: none;
+  border-bottom: 2px solid #eaeaee;
+  width: 18rem;
+  transition: 0.3s border;
+}
+.search #search-bar:focus {
+  outline: none;
+  border-bottom-color: #3C4048;
+}
+
 #cover {
   height: 40%;
   background-color: #00ABB3;
