@@ -17,3 +17,8 @@
     height: fit-content;
     flex: 1;
 }
+.card-container{
+    margin: 10%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}

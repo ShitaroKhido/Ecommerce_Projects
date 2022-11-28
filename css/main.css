@@ -110,6 +110,28 @@ body {
   font-size: 12px;
 }
 
+.card {
+  width: 18rem;
+  margin: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+  transition: 0.3s box-shadow;
+}
+.card-img {
+  width: 100%;
+}
+.card-body {
+  padding: 2rem;
+}
+.card-foot {
+  border-top: 1px solid #eaeaee;
+  padding: 10px;
+}
+.card:hover {
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 20px;
+  cursor: pointer;
+}
+
 #cover {
   background-color: #00ABB3;
   display: flex;
@@ -131,36 +153,8 @@ body {
   flex: 1;
 }
 
-.register-container {
-  display: flex;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  justify-content: center;
-  align-items: center;
-  padding: 10%;
-}
-.register-container form {
-  width: 20rem;
-  border: 2px solid black;
-  padding: 2rem;
-  border-radius: 20px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.register-container form .name {
-  display: flex;
-}
-.register-container form .name input[type=text] {
-  padding: 8px;
-  border-radius: 20px;
-  width: 100%;
-}
-.register-container form .password {
-  padding: 8px;
-  border-radius: 20px;
-  border: 2px solid #eaeaee;
-  width: 100%;
+.card-container {
+  margin: 10%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 }/*# sourceMappingURL=main.css.map */
