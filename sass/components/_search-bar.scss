@@ -3,7 +3,7 @@
     #search-bar{
         padding: 8px 10px;
         border: none;
-        border-bottom: 2px solid #eaeaee;
+        border-bottom: 2px solid $inner-secondary-color-2;
         width: 18rem;
         transition: 0.3s border;
         &:focus{
@@ -11,4 +11,15 @@
             border-bottom-color: $secondary-color;
         }
 }
+    #search-icon{
+        color: $inner-secondary-color-2;
+        border: 2px solid $inner-secondary-color-2;
+        padding: 4px;
+        border-radius: 50%;
+        &:hover{
+            cursor: pointer;
+            background-color: $secondary-color;
+            color: $inner-primary-color;
+        }
+    }
 }

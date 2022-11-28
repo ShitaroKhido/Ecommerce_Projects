@@ -77,6 +77,17 @@ body {
   outline: none;
   border-bottom-color: #3C4048;
 }
+.search #search-icon {
+  color: #eaeaee;
+  border: 2px solid #eaeaee;
+  padding: 4px;
+  border-radius: 50%;
+}
+.search #search-icon:hover {
+  cursor: pointer;
+  background-color: #3C4048;
+  color: white;
+}
 
 #cover {
   height: 40%;
