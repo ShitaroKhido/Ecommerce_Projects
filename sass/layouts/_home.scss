@@ -1,12 +1,12 @@
 @import "../components/variables";
 @import "../mixin/mixin";
 #cover{
-    height: 40%;
     background-color: $primary-color;
     @include goFlex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 10%;
     #cover-text{
         color: white;
         margin: 0;
@@ -14,5 +14,6 @@
     }
 }
 #main-container{
-    height: 100vh;
+    height: fit-content;
+    flex: 1;
 }
