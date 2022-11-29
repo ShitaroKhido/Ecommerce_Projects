@@ -1,0 +1,7 @@
+@mixin goFlex($justify:none, $align:none, $direction:none) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+    @content;
+}

@@ -1,0 +1,28 @@
+.navbar{
+    @include goFlex(space-between, center);
+    padding-right: 20px;
+    .nav{
+        margin: 0;
+        padding: 0;
+        @include goFlex($align:center);
+        &-brand{
+            width: 16rem;
+            margin: 0 -40px;
+        }
+        &-item{
+            list-style-type: none;
+        }
+        &-link{
+            padding: 20px;
+            text-decoration: none;
+            color: $second-color;
+            font-size: 18px;
+            font-weight: 600;
+            border-bottom: 2px solid transparent;
+            transition: 0.3s border-bottom-color;
+            &:hover{
+                border-bottom-color: $prime-color;
+            }
+        }
+    }
+}
