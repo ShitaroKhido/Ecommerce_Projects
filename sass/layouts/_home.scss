@@ -7,6 +7,10 @@
         color: $second-color-2;
     }
     .content{
+        .section-title{
+            font-weight: 600;
+            color: $second-color
+        }
         height: 100vh;
         padding: 4rem;
         .card-container{
