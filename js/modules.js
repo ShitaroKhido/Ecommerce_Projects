@@ -1,6 +1,6 @@
 // FUNCTIONS-------------------------------------------------------------
 
-const createCard = (item, btnText) => {
+const createCard = (item, btnText="Buy") => {
   //  Create html card element by using template strings.
   let rate = `<i class="material-icons">star</i>`;
   const card = `
@@ -16,7 +16,7 @@ const createCard = (item, btnText) => {
                         <p>Rate: <span class="rate">${rate}</span></p>
                     </div>
                     <div class="card-footer">
-                        <p>Price: <span class="price-tag">$ ${item.price}</span></p>
+                        <p>Price: <span class="price-tag">${item.currency} ${item.price}</span></p>
                         <button class="btn btn-secondary">${btnText}</button>
                     </div>
                 </div>
@@ -30,21 +30,32 @@ const addItem = (itemDataList) => {
     description: null,
     img: null,
     price: null,
+    currency: null,
     id: null,
   };
-  item.name = addForm.itemName.value;
-  item.price = addForm.itemPrice.value;
-  item.description = addForm.itemDescription.value;
-  item.img = addForm.itemImg.value;
-  item.id = idGenerator();
-  itemDataList.push(item);
+  if (
+    (addForm.itemName.value.trim() &&
+      addForm.itemPrice.value.trim() &&
+      addForm.itemDescription.value.trim() &&
+      addForm.itemImg.value.trim()) !== ""
+  ) {
+    item.name = addForm.itemName.value.trim();
+    item.price = addForm.itemPrice.value.trim();
+    item.description = addForm.itemDescription.value.trim();
+    item.img = addForm.itemImg.value.trim();
+    item.currency = addForm.currency.value.trim()
+    item.id = idGenerator();
+    itemDataList.push(item);
+    console.log(itemDataList);
+  }
 };
 
-const renderUI = (itemDataList) => {
+const renderUI = (itemDataList, container, btnText) => {
   // Reder element from data to UI.
+  container.innerHTML = "";
   itemDataList.forEach((item) => {
     // Adding element to container.
-    cardContainer.innerHTML += createCard(item);
+    container.innerHTML += createCard(item,btnText);
   });
 };
 
@@ -55,6 +66,16 @@ const idGenerator = () => {
   let uid = parseInt(Math.random() * dateNow).toString(36);
   return uid;
 };
+
+const saveData = (data)=>{
+  // Save data to local storage
+  localStorage.setItem(`${data}`, JSON.stringify(data));
+}
+
+const loadData = (key)=>{
+  // Load data from local storage
+  localStorage.getItem(key)
+}
 
 const show = (element, displayType) => {
   // Display element by type eg.(block, flex...etc)

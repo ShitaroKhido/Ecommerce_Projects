@@ -1,4 +1,4 @@
-.home-container{
+.container{
     flex: 1;
     .cover{
         padding: 10%;
@@ -11,10 +11,10 @@
             font-weight: 600;
             color: $second-color
         }
-        height: 100vh;
         padding: 4rem;
         .card-container{
             display: grid;
+            gap: 20px;
             grid-template-columns: repeat(4, 1fr);
         }
     }

@@ -44,6 +44,11 @@ body {
 .navbar .nav-link:hover {
   border-bottom-color: #00ABB3;
 }
+.navbar .nav .dropdown {
+  position: absolute;
+  background-color: white;
+  display: block;
+}
 
 footer {
   flex: 1;
@@ -179,56 +184,24 @@ footer .contact-icon .foot-icon i {
   border-color: #FFFFFF;
 }
 
-.home-container {
+.container {
   flex: 1;
 }
-.home-container .cover {
+.container .cover {
   padding: 10%;
   text-align: center;
   background-color: #00ABB3;
   color: #FFFFFF;
 }
-.home-container .content {
-  height: 100vh;
+.container .content {
   padding: 4rem;
 }
-.home-container .content .section-title {
+.container .content .section-title {
   font-weight: 600;
   color: #3C4048;
 }
-.home-container .content .card-container {
+.container .content .card-container {
   display: grid;
+  gap: 20px;
   grid-template-columns: repeat(4, 1fr);
-}
-
-.login {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: none;
-}
-.login form {
-  display: flex;
-  justify-content: none;
-  align-items: none;
-  flex-direction: column;
-  background-color: white;
-  width: 14rem;
-  gap: 1rem;
-  border: 2px solid #00ABB3;
-  padding: 2rem;
-}
-.login form input {
-  padding: 10px;
-  border: none;
-  outline: none;
-  border-bottom: 2px solid #EAEAEA;
-  transition: 0.3s border-bottom-color;
-}
-.login form input:focus {
-  border-bottom-color: #00ABB3;
 }/*# sourceMappingURL=main.css.map */
