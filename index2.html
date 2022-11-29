@@ -7,10 +7,19 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     <link rel="stylesheet" href="css/main.min.css">
     <link rel="icon" href="imgs/logo/favicons.png">
-    <script src="js/modules.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/usermode.js" defer></script>
     <title>LoukEy</title>
 </head>
 <body>
+    <div class="login" style="display: none;">
+        <form>
+            <legend>Login</legend>
+            <input type="text" id="username" placeholder="Username">
+            <input type="text" id="password" placeholder="Password">
+            <button class="btn btn-secondary">Login</button>
+        </form>
+    </div>
     <!-- Navigation bar -->
     <nav class="navbar">
         <ul class="nav">
@@ -37,8 +46,28 @@
             <button class="btn btn-primary">Go Shopping</button>
         </div>
         <div class="content">
-           
+            <h2 class="section-title">Recent post</h2>
+            <div class="card-container">
 
+                <div class="card">
+                    <img src="imgs/logo/Logo-dark.png" alt="" class="card-img">
+                    <div class="card-body">
+                        <div class="card-text">
+                            <span class="title">Title</span>
+                            <span class="description">
+                                Lorem ipsum dolor, sit amet consectetur 
+                                adipisicing elit. Fuga repellendus ut,
+                            </span>
+                        </div>
+                        <p>Rate: <span class="rate"><i class="material-icons">star</i></span></p>
+                    </div>
+                    <div class="card-footer">
+                        <p>Price: <span class="price-tag">$999</span></p>
+                        <button class="btn btn-secondary">Add to cart</button>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 
