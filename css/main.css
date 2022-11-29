@@ -40,4 +40,43 @@ body {
 }
 .navbar .nav-link:hover {
   border-bottom-color: #00ABB3;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #00ABB3;
+  color: #EAEAEA;
+  padding: 2rem;
+}
+footer .navbar {
+  margin: 2rem;
+}
+footer .navbar .nav-link {
+  color: #EAEAEA;
+}
+footer .navbar .nav-link:hover {
+  border-bottom-color: inherit;
+}
+footer .footer-info {
+  padding: 2rem;
+  display: flex;
+  justify-content: none;
+  align-items: center;
+  flex-direction: none;
+}
+footer .footer-info .foot-contact ul {
+  list-style: none;
+  padding: 0;
+}
+footer .footer-info .foot-contact ul li {
+  padding: 4px;
+}
+footer #copyrights {
+  font-size: 12px;
+}
+footer .contact-icon i {
+  font-size: 2rem;
 }/*# sourceMappingURL=main.css.map */

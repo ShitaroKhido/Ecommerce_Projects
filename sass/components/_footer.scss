@@ -1,0 +1,38 @@
+footer{
+    @include goFlex(center, center, $direction:column);
+    background-color: $prime-color;
+    color: $second-color-2;
+    padding: 2rem;
+    .navbar{
+        margin: 2rem;
+        .nav{
+            &-link{
+                color: $second-color-2;
+                &:hover{
+                    border-bottom-color: inherit;
+                }
+            }
+        }
+    }
+    .#{&}-info{
+        padding: 2rem;
+        @include goFlex($align:center);
+        .foot-contact{
+            ul{
+                list-style: none;
+                padding: 0;
+                li{
+                    padding: 4px;
+                }
+            }
+        }
+    }
+    #copyrights{
+        font-size: 12px;
+    }
+    .contact-icon{
+        i{
+            font-size: 2rem;
+        }
+    }
+}
