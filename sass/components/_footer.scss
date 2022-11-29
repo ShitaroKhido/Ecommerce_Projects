@@ -1,5 +1,5 @@
 footer{
-    
+    flex: 1;
     @include goFlex(center, center, $direction:column);
     background-color: $prime-color;
     color: $second-color-2;

@@ -8,7 +8,10 @@
 // MAIN CODE
 body{
     margin: 0;
-    font-family: Montserrat;    
+    height: 100vh;
+    font-family: Montserrat;  
+    display: flex;
+    flex-direction: column
 }
 
 
@@ -18,7 +21,10 @@ body{
 @import "./mixins/mixin";
 @import "./components/navbar";
 @import "./components/footer";
+@import "./components/search";
+@import "./components/card";
+@import "./components/button";
 
 
 // LAYOUTS
-
+@import "./layouts/home.scss";

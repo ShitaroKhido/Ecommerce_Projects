@@ -1,0 +1,21 @@
+.btn{
+    padding: 8px 10px;
+    border: 2px solid $second-color-2;
+    background-color: transparent;
+    color: $second-color-2;
+    font-weight: 600;
+    transition: 0.3s color, 0.3s background-color;
+    &:hover{
+        cursor: pointer;
+        background-color: $second-color-2;
+        color: $second-color;
+    }
+    &-primary{
+        color: $prime-color;
+        @include btn-style($second-color-2, $prime-color);
+    }
+    &-secondary{
+        color: $prime-color;
+        @include btn-style($prime-color, $second-color-2);
+    }
+}

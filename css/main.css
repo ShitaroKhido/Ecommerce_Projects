@@ -4,7 +4,10 @@
 }
 body {
   margin: 0;
+  height: 100vh;
   font-family: Montserrat;
+  display: flex;
+  flex-direction: column;
 }
 
 .navbar {
@@ -43,6 +46,7 @@ body {
 }
 
 footer {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -82,4 +86,113 @@ footer .contact-icon .foot-icon:hover {
 }
 footer .contact-icon .foot-icon i {
   font-size: 2rem;
+}
+
+.search #search-box {
+  width: 20rem;
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-bottom: 2px solid #EAEAEA;
+  transition: 0.3s border-bottom-color;
+}
+.search #search-box:focus {
+  border-bottom-color: #00ABB3;
+}
+.search #search-icon {
+  color: #EAEAEA;
+  transition: 0.3s color;
+  margin-left: -2rem;
+  margin-bottom: -0.2rem;
+}
+.search #search-icon:hover {
+  color: #00ABB3;
+}
+
+.card {
+  width: 16rem;
+  padding: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 2px 2px 3px;
+  transition: 0.3s box-shadow;
+}
+.card-img {
+  width: 100%;
+}
+.card-body p span i {
+  position: relative;
+  top: 2px;
+  font-size: 16px;
+  color: #3C4048;
+}
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: none;
+  border-top: 2px solid #EAEAEA;
+  padding-top: 10px;
+}
+.card-footer .price-tag {
+  font-weight: 600;
+  color: #00ABB3;
+}
+.card:hover {
+  box-shadow: rgba(0, 0, 0, 0.15) 10px 10px 15px;
+  cursor: pointer;
+}
+
+.btn {
+  padding: 8px 10px;
+  border: 2px solid #EAEAEA;
+  background-color: transparent;
+  color: #EAEAEA;
+  font-weight: 600;
+  transition: 0.3s color, 0.3s background-color;
+}
+.btn:hover {
+  cursor: pointer;
+  background-color: #EAEAEA;
+  color: #3C4048;
+}
+.btn-primary {
+  color: #00ABB3;
+  background-color: #00ABB3;
+  color: #EAEAEA;
+  transition: 0.3s color, 0.3s background-color;
+  border: 2px solid #EAEAEA;
+}
+.btn-primary:hover {
+  background-color: #EAEAEA;
+  color: #00ABB3;
+  border-color: #00ABB3;
+}
+.btn-secondary {
+  color: #00ABB3;
+  background-color: #EAEAEA;
+  color: #00ABB3;
+  transition: 0.3s color, 0.3s background-color;
+  border: 2px solid #00ABB3;
+}
+.btn-secondary:hover {
+  background-color: #00ABB3;
+  color: #EAEAEA;
+  border-color: #EAEAEA;
+}
+
+.home-container {
+  flex: 1;
+}
+.home-container .cover {
+  padding: 10%;
+  text-align: center;
+  background-color: #00ABB3;
+  color: #EAEAEA;
+}
+.home-container .content {
+  height: 100vh;
+  padding: 4rem;
+}
+.home-container .content .card-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 }/*# sourceMappingURL=main.css.map */
