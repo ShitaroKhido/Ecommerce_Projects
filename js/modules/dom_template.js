@@ -77,3 +77,26 @@ const createCard = (item, mode) => {
 
   return card;
 };
+const createCard = (item, mode) => {
+  //  Create html card element by using DOM:
+  let rate = "";
+  for( let i=0; i< Math.round(item.rate); i++){
+      rate += `<i class="material-icons">star</i>`;
+      console.log(rate)
+  }
+  const card = createElementTemplate(
+    `<div class="card" id="${item.id}">
+      <img src="${item.img}" alt="" class="product-img">
+      <div class="product-info">
+          <div class="title">${item.name}</div>
+          <div class="description">${item.description}</div>
+          <div class="rate">${rate}</div>
+      </div>
+      <div class="card-footer">
+          <span class="price">${item.price}</span>
+          <button class="btn btn-primary">BUY</button>
+      </div>
+    </div>`
+  )
+  return card;
+};
