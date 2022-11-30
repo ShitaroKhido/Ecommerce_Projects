@@ -1,33 +1,44 @@
 .navbar{
-    @include goFlex(space-between, center);
-    padding-right: 20px;
+    @include goFlex(space-between);
     .nav{
-        margin: 0;
-        padding: 0;
-        @include goFlex($align:center);
-        &-brand{
-            width: 16rem;
-            margin: 0 -40px;
+        @include goFlex(flex-start, center, row);
+        &-logo{
+            margin: -1rem -2rem;
+            width: 10rem;
         }
         &-item{
-            list-style-type: none;
+            @include marg-padd-0;
+            list-style: none;
         }
         &-link{
-            padding: 20px;
             text-decoration: none;
-            color: $second-color;
-            font-size: 18px;
-            font-weight: 600;
+            color: $prime-color;
+            padding: 1rem 2rem;
             border-bottom: 2px solid transparent;
-            transition: 0.3s border-bottom-color;
+            transition: 0.3s border;
             &:hover{
                 border-bottom-color: $prime-color;
             }
         }
+        // Dropdown menu stylinga
+        .dropdown-button{
+            transition: 0.3s display;
+            &:hover .dropdown{
+                display: block;
+            }
+        }
         .dropdown{
+            display: none;
             position: absolute;
-            background-color: white;
-            display: block;
+            @include marg-padd-0;
+            margin-top: 10px;
+            background-color: $second-color-2;
+            box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 18px;
+            .nav-item{
+                a{
+                    display: block;
+                }
+            }
         }
     }
 }

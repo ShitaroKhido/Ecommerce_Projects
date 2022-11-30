@@ -1,0 +1,32 @@
+footer{
+    background-color: $prime-color;
+    color: $second-color-2;
+    padding: 2rem;
+    #foot-img{
+        width: 20rem;
+        margin: 0 -5rem;
+    }
+    .footer-contact{
+        text-align: center;
+        ul{
+            @include marg-padd-0;
+            li{
+                padding: 0.2rem 0;
+                list-style: none;
+            }
+        }
+    }
+    .footer-nav{
+        justify-content: center;
+        text-align: center;
+        .nav{
+            @include marg-padd-0;
+            &-link{
+                color: $second-color-2;
+                &:hover{
+                    border-bottom-color: $second-color-2;
+                }
+            }
+        }
+    }
+}

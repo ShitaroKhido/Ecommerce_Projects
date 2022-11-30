@@ -1,30 +1,33 @@
-// FONTS
+// FONTS IMPORTS
 @font-face {
     font-family: Montserrat;
     src: url(/fonts/Montserrat/Montserrat-VariableFont_wght.ttf);
 }
 
+// VARIABLES & MIXIN
+@import "./variables";
+@import "./mixin";
 
 // MAIN CODE
 body{
     margin: 0;
     height: 100vh;
-    font-family: Montserrat;  
+    font-family: Montserrat, 'Courier New', Courier, monospace;
     display: flex;
-    flex-direction: column
+    flex-direction: column;
+    .container{
+        flex: 1;
+        .product-views{
+            padding: 2rem 1rem;
+            @include goFlex(center, center, row);
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+    }
 }
-
-
 // IMPORTS
-// @import "";
-@import "./variable";
-@import "./mixins/mixin";
 @import "./components/navbar";
-@import "./components/footer";
-@import "./components/search";
-@import "./components/card";
+@import "./components/foot";
 @import "./components/button";
-
-
-// LAYOUTS
-@import "./layouts/home.scss";
+@import "./components/card";
+@import "./components/search_bar";
