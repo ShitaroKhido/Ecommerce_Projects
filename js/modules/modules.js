@@ -76,6 +76,13 @@ const hide = (element) => {
   element.style.display = "none";
 };
 
+const displayToggle = (element, displayType)=>{
+  if (element.style.display === "none"){
+    show(element, displayType)
+  } else {
+    hide(element);
+  }
+}
 // CONST AND VARIABLEs-------------------------------------------------------------
 let itemData = JSON.parse(localStorage.getItem("itemData"));
 const a = document.querySelector(".product-views");
@@ -154,4 +161,4 @@ const item = [
   },
 ];
 
-renderUI(item, a, "edit");
+renderUI(item, a, "buy");

@@ -8,7 +8,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     <link rel="stylesheet" href="css/main.min.css">
     <script src="js/modules/modules.js" defer></script>
-    <script src="js/user_mode/seller.js" defer></script>
+    <!-- <script src="js/user_mode/seller.js" defer></script> -->
+    <script src="js/user_mode/customer.js" defer></script>
     <title>LoukEy</title>
 </head>
 <body>
@@ -40,13 +41,27 @@
             </li>
         </ul>
         <ul class="nav">
-            <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
+            <!-- <li class="nav-item"><a href="#" class="nav-link">Login</a></li> -->
+            <li class="nav-item"><a href="#" class="nav-link"><i class="material-icons">shopping_cart</i></a></li>
         </ul>
     </nav>
 
+    
 
     <div class="container">
         <!-- CONTAINER -->
+        
+        
+        <!-- BUYERS -->
+        <div id="cart-box" style="display: none;">
+            <h3>Yours cart list</h3>
+            <div class="cart-container">
+                <!-- CART CONTAINER -->
+            </div>
+        </div>
+        
+        
+        <!-- SELLLERS OPTIONS -->
         <div class="seller-options">
             <form class="add-product">
                 <legend>Add product</legend>
@@ -61,8 +76,10 @@
                 <button class="btn btn-primary">ADD ITEM</button>
             </form>
         </div>
+
+
+        <!-- PRODUCT VIEWS CONTAINER -->
         <div class="product-views">
-            <!-- PRODUCT VIEWS CONTAINER -->
             <div class="card">
                 <img src="imgs/logo/Logo-dark.png" alt="..." class="product-img">
                 <div class="product-info">
@@ -104,8 +121,9 @@
             <ul>
                 <li>Email: Thismail@gmail.com</li>
                 <li>Phone: +123 456 789</li>
-                <li>Location: </li>
+                <li>Location: Phnom Penh, Cambodia.</li>
             </ul>
+            <p>Copyrights &copy; and reserved by Pagna Khid.</p>
         </div>
     </footer>
 </body>

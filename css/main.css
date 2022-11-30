@@ -25,8 +25,8 @@ body .container .product-views {
 .navbar {
   display: flex;
   justify-content: space-between;
-  align-items: none;
-  flex-direction: none;
+  align-items: unset;
+  flex-direction: unset;
 }
 .navbar .nav {
   display: flex;
@@ -91,6 +91,10 @@ footer .footer-contact ul {
 footer .footer-contact ul li {
   padding: 0.2rem 0;
   list-style: none;
+}
+footer .footer-contact p {
+  font-size: 12px;
+  margin-top: 2rem;
 }
 footer .footer-nav {
   justify-content: center;
@@ -197,6 +201,56 @@ footer .footer-nav .nav-link:hover {
 .search-bar .search-btn {
   margin: -1.6rem;
   color: #EAEAEA;
+}
+
+#cart-box {
+  right: 0;
+  position: absolute;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: #FFFFFF;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 18px;
+}
+#cart-box h3 {
+  background-color: #00ABB3;
+  padding: 1rem;
+  margin: 0;
+  border-bottom: 2px solid #FFFFFF;
+  color: #FFFFFF;
+}
+#cart-box .cart-container {
+  display: flex;
+  justify-content: unset;
+  align-items: center;
+  flex-direction: column;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+#cart-box .cart-container h2 {
+  padding: 2rem 12rem;
+}
+#cart-box .cart-container img {
+  width: 8rem;
+  height: 5rem;
+}
+#cart-box .cart-container .item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: unset;
+  padding-right: 1rem;
+  gap: 2rem;
+  transition: 0.3s color, 0.3s background-color;
+}
+#cart-box .cart-container .item .name {
+  font-weight: 800;
+}
+#cart-box .cart-container .item:hover {
+  cursor: pointer;
+  background-color: #00ABB3;
+  color: #FFFFFF;
 }
 
 .seller-options .add-product {

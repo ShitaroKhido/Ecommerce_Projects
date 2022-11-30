@@ -1,4 +1,4 @@
-@mixin goFlex($justify:none, $algins:none, $direction:none) {
+@mixin goFlex($justify:unset, $algins:unset, $direction:unset) {
     display: flex;
     justify-content: $justify;
     align-items: $algins;
