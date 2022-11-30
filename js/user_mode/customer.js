@@ -13,7 +13,10 @@ const removeFromCart = (event, cartList) => {
 }
 
 // MAIN CODE-----------------------------------------------
-
+const cart = [];
 // document.addEventListener("click", addToCart);
 // document.addEventListener("click", ()=>console.log("test"))
-document.addEventListener("click", addToCart)
+document.addEventListener("click",(event)=>{
+    addToCart(event, cart)
+    console.log(cart)
+})

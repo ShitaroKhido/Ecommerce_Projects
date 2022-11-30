@@ -1,0 +1,12 @@
+.seller-options{
+    .add-product{
+        @include goFlex(center, center, row);
+        flex-wrap: wrap;
+        margin: 2rem;
+        gap: 1rem;
+        input{
+            outline: none;
+            @include input-style;
+        }
+    }
+}

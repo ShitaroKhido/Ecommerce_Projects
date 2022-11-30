@@ -40,7 +40,7 @@ const createCard = (item, mode) => {
   }
 
   // Fill in each element content
-  card.id = idGenerator();
+  card.id = item.id;
   cardImg.src = item.img;
   cardTitle.textContent = item.name;
   cardDescription.textContent = item.description;
@@ -154,4 +154,4 @@ const item = [
   },
 ];
 
-renderUI(item, a, "buy");
+renderUI(item, a, "edit");

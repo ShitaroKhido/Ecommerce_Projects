@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     <link rel="stylesheet" href="css/main.min.css">
     <script src="js/modules/modules.js" defer></script>
-    <script src="js/user_mode/customer.js" defer></script>
+    <script src="js/user_mode/seller.js" defer></script>
     <title>LoukEy</title>
 </head>
 <body>
@@ -47,6 +47,20 @@
 
     <div class="container">
         <!-- CONTAINER -->
+        <div class="seller-options">
+            <form class="add-product">
+                <legend>Add product</legend>
+                <input type="text" placeholder="Name" name="productName">
+                <input type="text" placeholder="Desscription" name="productDesscription">
+                <input type="url" name="productImgURL" placeholder="Images URL links">
+                <input type="number" placeholder="Price" name="productPrice">
+                <select name="currency" class="btn btn-primary">
+                    <option value="riels">Riels</option>
+                    <option value="dollars">Dollars</option>
+                </select>
+                <button class="btn btn-primary">ADD ITEM</button>
+            </form>
+        </div>
         <div class="product-views">
             <!-- PRODUCT VIEWS CONTAINER -->
             <div class="card">
