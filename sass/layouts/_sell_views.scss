@@ -10,3 +10,21 @@
         }
     }
 }
+.edit-box{
+    @include goFlex(center, center, unset);
+    #edit-item{
+        gap: 1rem;
+        padding: 2rem;
+        position: fixed;
+        background-color: $second-color-2;
+        box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 18px;
+        @include goFlex(center, center, column);
+        input, select{
+            width: 16rem;
+            outline: none;
+            margin-left: 0 !important;
+            @include input-style;
+        }
+    }
+        
+}

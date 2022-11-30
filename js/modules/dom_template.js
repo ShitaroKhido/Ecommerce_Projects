@@ -77,7 +77,7 @@ const createCard = (item, mode) => {
 
   return card;
 };
-const createCard = (item, mode) => {
+const createCard2 = (item, mode) => {
   //  Create html card element by using DOM:
   let rate = "";
   for( let i=0; i< Math.round(item.rate); i++){

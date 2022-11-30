@@ -33,7 +33,7 @@ const createCard = (item, mode) => {
     cardButton.classList.add("buy", "btn", "btn-primary");
   }
   // Convert Rate values to elements:
-  if (Math.round(item.rate) !== (0 && null)){
+  if (Math.round(item.rate) !== (0 && null)) {
     for (let i = 0; i < Math.round(item.rate); i++) {
       cardRate.innerHTML += `<i class="material-icons">star</i>`;
     }
@@ -98,41 +98,41 @@ const productContainer = document.querySelector(".product-views");
 const userIcons = document.querySelector("#userIcons");
 let data = [
   {
-    name:"Test",
+    name: "Test",
     description: "Test......",
     price: 123,
     rate: 3,
     id: idGenerator(),
-    img: "imgs/logo/Logo-color.png"
+    img: "imgs/logo/Logo-color.png",
   },
   {
-    name:"Test",
+    name: "Test",
     description: "Test......",
     price: 123,
     rate: 3,
     id: idGenerator(),
-    img: "imgs/logo/Logo-color.png"
+    img: "imgs/logo/Logo-color.png",
   },
   {
-    name:"Test",
+    name: "Test",
     description: "Test......",
     price: 123,
     rate: 3,
     id: idGenerator(),
-    img: "imgs/logo/Logo-color.png"
+    img: "imgs/logo/Logo-color.png",
   },
   {
-    name:"Test",
+    name: "Test",
     description: "Test......",
     price: 123,
     rate: 3,
     id: idGenerator(),
-    img: "imgs/logo/Logo-color.png"
+    img: "imgs/logo/Logo-color.png",
   },
-]
+];
 // saveToLocalStorage("itemDataList", data);
 let itemDataList = loadFromLocalStorage("itemDataList");
 
 // loadFromLocalStorage("item")
-console.log(itemDataList)
+console.log(itemDataList);
 renderUI(itemDataList, productContainer, "buy");
