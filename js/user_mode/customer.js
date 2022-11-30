@@ -1,9 +1,41 @@
 // SELLER SIDE FUNCTION-----------------------------------
+const activateCustumerMode = (container) => {
+  createLinkIcon("shopping_cart", userIcons);
+  createCartBox(container);
+  renderUI(itemDataList, productContainer, "buy");
+};
+const createCartBox = (container) => {
+  // FUNCTION: CREAT CART BOX TEMPLATE
+  const cartBox = document.createElement("div");
+  const h3 = document.createElement("h3");
+  const cartContainer = document.createElement("div");
+  cartBox.style.display = "none";
+  h3.textContent = "Yours cart list";
+  cartBox.id = "cart-box";
+  cartContainer.classList.add("cart-container");
+  cartBox.append(h3, cartContainer);
+  container.prepend(cartBox);
+};
+const createLinkIcon = (name, container) => {
+  // FUNCTION: CREATE NAV ICON LINK TEMPLATE
+  const li = document.createElement("li");
+  const a = document.createElement("a");
+  const i = document.createElement("i");
+  li.classList.add("nav-item");
+  a.classList.add("nav-link");
+  i.classList.add("material-icons");
+  i.textContent = name;
+  a.setAttribute("href", "#");
+  a.append(i);
+  li.append(a);
+  container.innerHTML = "";
+  container.appendChild(li);
+};
 const addToCart = (event, cartList, container) => {
   // Add ID of the item to cart array list:
   if (event.target.textContent === "BUY") {
     cartList.push(event.target.parentElement.parentElement.id);
-    renderCartBox(cartList, item, container);
+    renderCartBox(cartList, itemDataList, container);
   }
 };
 
@@ -11,7 +43,7 @@ const removeFromCart = (event, cartList, container) => {
   // Remove ID of the item to cart array list:
   if (event.target.textContent === "Remove") {
     cartList.pop(event.target.parentElement.id);
-    renderCartBox(cartList, item, container);
+    renderCartBox(cartList, itemDataList, container);
   }
 };
 
@@ -45,7 +77,6 @@ const renderCartBox = (cartList, itemList, container) => {
           img.src = item.img;
           name.textContent = item.name;
           price.textContent = item.price;
-          console.log(container.children);
           // Append element:
           cartItem.append(img, name, price, removeButton);
           container.appendChild(cartItem);
@@ -63,23 +94,25 @@ const renderCartBox = (cartList, itemList, container) => {
 };
 
 // MAIN CODE-----------------------------------------------
-const cart = [];
+// Activate Customer mode:
+activateCustumerMode(mainContainer);
+const cartDataList = [];
 const cartContainer = document.querySelector("#cart-box .cart-container");
 const cartPopup = document.querySelector("#cart-box");
 
 // EVENT LISTENER
 document.body.addEventListener("click", (event) => {
-  addToCart(event, cart, cartContainer);
+  addToCart(event, cartDataList, cartContainer);
   if (event.target.textContent === "shopping_cart") {
     // Toggle the display values:
     displayToggle(cartPopup, "block");
     // Render cart box to user interface:
-    renderCartBox(cart, item, cartContainer);
+    renderCartBox(cartDataList, itemDataList, cartContainer);
   }
 });
 
 // Listening the click:
 cartContainer.addEventListener("click", (event) => {
   // if remove is clicked then item will be remove:
-  removeFromCart(event, cart, cartContainer);
+  removeFromCart(event, cartDataList, cartContainer);
 });

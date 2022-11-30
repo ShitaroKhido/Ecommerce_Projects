@@ -33,8 +33,12 @@ const createCard = (item, mode) => {
     cardButton.classList.add("buy", "btn", "btn-primary");
   }
   // Convert Rate values to elements:
-  for (let i = 0; i < Math.round(item.rate); i++) {
-    cardRate.innerHTML += `<i class="material-icons">star</i>`;
+  if (Math.round(item.rate) !== (0 && null)){
+    for (let i = 0; i < Math.round(item.rate); i++) {
+      cardRate.innerHTML += `<i class="material-icons">star</i>`;
+    }
+  } else {
+    cardRate.innerHTML = `<p>Not yet rated</p>`;
   }
 
   // Fill in each element content:
@@ -59,6 +63,13 @@ const renderUI = (itemDataList, container, mode) => {
     container.appendChild(createCard(item, mode));
   });
 };
+// BASIC TOOLS FUNCTION
+const saveToLocalStorage = (key, data) => {
+  // Save data to local storage:
+  localStorage.setItem(key, JSON.stringify(data));
+};
+
+const loadFromLocalStorage = (key) => JSON.parse(localStorage.getItem(key)); // Load data from local storage:
 
 const idGenerator = () => {
   let dateNow = Date.now();
@@ -84,25 +95,44 @@ const displayToggle = (element, displayType) => {
 // CONST AND VARIABLEs-------------------------------------------------------------
 const mainContainer = document.querySelector(".container");
 const productContainer = document.querySelector(".product-views");
-const item = [
+const userIcons = document.querySelector("#userIcons");
+let data = [
   {
-    name: "Test product",
-    description: "Tsting........",
-    img: "imgs/logo/Logo-dark.png",
-    rate: 2,
-    price: 234,
-    currency: "$",
+    name:"Test",
+    description: "Test......",
+    price: 123,
+    rate: 3,
     id: idGenerator(),
+    img: "imgs/logo/Logo-color.png"
   },
   {
-    name: "Test product",
-    description: "Tsting........",
-    img: "imgs/logo/Logo-dark.png",
-    rate: 2,
-    price: 234,
-    currency: "$",
+    name:"Test",
+    description: "Test......",
+    price: 123,
+    rate: 3,
     id: idGenerator(),
+    img: "imgs/logo/Logo-color.png"
   },
-];
+  {
+    name:"Test",
+    description: "Test......",
+    price: 123,
+    rate: 3,
+    id: idGenerator(),
+    img: "imgs/logo/Logo-color.png"
+  },
+  {
+    name:"Test",
+    description: "Test......",
+    price: 123,
+    rate: 3,
+    id: idGenerator(),
+    img: "imgs/logo/Logo-color.png"
+  },
+]
+// saveToLocalStorage("itemDataList", data);
+let itemDataList = loadFromLocalStorage("itemDataList");
 
-renderUI(item, productContainer, "buy");
+// loadFromLocalStorage("item")
+console.log(itemDataList)
+renderUI(itemDataList, productContainer, "buy");
