@@ -1,4 +1,56 @@
 // SELLER SIDE FUNCTION-----------------------------------
+const activateSellerMode = (container) => {
+  // Creating element for the seller option template:
+  const optionsContainer = document.createElement("div");
+  const form = document.createElement("form");
+  const formTitle = document.createElement("legend");
+  const inputName = document.createElement("input");
+  const inputDescriptoin = document.createElement("input");
+  const inputImgURL = document.createElement("input");
+  const inputPrice = document.createElement("input");
+  const addItemButton = document.createElement("div");
+  const currency = document.createElement("select");
+  const currencyOptOne = document.createElement("option");
+  const currencyOptTwo = document.createElement("option");
+  // Adding class name to needed element:
+  optionsContainer.classList.add("seller-options");
+  form.classList.add("add-product");
+  currency.classList.add("btn", "btn-primary");
+  addItemButton.classList.add("btn", "btn-primary");
+  // Set the attribute to needed element:
+  inputDescriptoin.setAttribute("name", "productDesscription");
+  inputName.setAttribute("name", "productName");
+  inputImgURL.setAttribute("name", "productImgURL");
+  inputPrice.setAttribute("name", "productPrice");
+  currency.setAttribute("name", "productPrice");
+  currencyOptOne.setAttribute("value", "riels");
+  currencyOptTwo.setAttribute("value", "dollars");
+  inputDescriptoin.setAttribute("placeholder", "Desscription");
+  inputName.setAttribute("placeholder", "Name");
+  inputImgURL.setAttribute("placeholder", "Images URL links");
+  inputPrice.setAttribute("placeholder", "Price");
+  // Set texts content to needed element:
+  formTitle.textContent = "Add product";
+  addItemButton.textContent = "ADD ITEM";
+  currencyOptOne.textContent = "Riels";
+  currencyOptTwo.textContent = "Dollars";
+  // Appending Elements:
+  currency.append(currencyOptOne, currencyOptTwo);
+  form.append(
+    formTitle,
+    inputName,
+    inputDescriptoin,
+    inputImgURL,
+    inputPrice,
+    currency,
+    addItemButton
+  );
+  optionsContainer.append(form);
+  container.prepend(optionsContainer);
+  // Render the UI as edit mode:
+  renderUI(item, productContainer, "buy");
+};
+
 const addItemData = (form, dataList) => {
   if (
     (form.productName.value.trim() &&
@@ -19,7 +71,7 @@ const addItemData = (form, dataList) => {
     item.id = idGenerator();
     // Append item object to data list:
     dataList.push(item);
-  } else{
+  } else {
     alert("Please fill in the blank!");
   }
 };
@@ -32,12 +84,15 @@ const removeItemData = (itemID, dataList) => {
   });
 };
 // MAIN CODE-----------------------------------------------
+// Activate user to seller mode:
+activateSellerMode(mainContainer);
 const addInForm = document.querySelector(".add-product");
 
+// EVENT LISTENER
 document.addEventListener("click", (event) => {
   if (event.target.id === "removeItem") {
     let itemID = event.target.parentElement.parentElement.id;
-    // console.log(itemID)
+    // console.log(itemID):
     removeItemData(itemID, item);
     renderUI(item, a, "edit");
   }
