@@ -1,11 +1,15 @@
 .card{
     width: 18rem;
+    height: 30rem;
+    display: block;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    @include goFlex(space-between, unset , column);
     .product-img{
-        width: 100%;
+        width: 18rem;
+        height: 180px;
     }
     .product-info{
-        padding: 1rem;
+        padding: 1.5rem;
         .title{
             margin-bottom: 0.5rem;
             font-weight: 800;

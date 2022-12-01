@@ -19,7 +19,7 @@ body{
         flex: 1;
         .product-views{
             padding: 2rem 1rem;
-            @include goFlex(center, center, row);
+            @include goFlex(center, flex-start, row);
             flex-wrap: wrap;
             gap: 2rem;
         }

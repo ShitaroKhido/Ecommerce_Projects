@@ -99,4 +99,10 @@ const createCard2 = (item, mode) => {
     </div>`
   )
   return card;
+
 };
+const createElementTemplate = (html)=>{
+  const template = document.createElement("template");
+  template.innerHTML = html.trim();
+  return template.content.firstElementChild;
+}

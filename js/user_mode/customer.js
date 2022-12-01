@@ -3,6 +3,12 @@ const activateCustumerMode = (container) => {
   createLinkIcon("shopping_cart", userIcons);
   createCartBox(container);
   renderUI(itemDataList, productContainer, "buy");
+  // Adding a count item number for cart list:
+  const span = document.createElement("span");
+  span.textContent = 0;
+  span.id = "cart-count";
+  const cartIcon = document.querySelector("#shopping_cart").parentElement;
+  cartIcon.append(span);
 };
 const createCartBox = (container) => {
   // FUNCTION: CREAT CART BOX TEMPLATE
@@ -25,17 +31,24 @@ const createLinkIcon = (name, container) => {
   a.classList.add("nav-link");
   i.classList.add("material-icons");
   i.textContent = name;
+  i.id = name;
   a.setAttribute("href", "#");
   a.append(i);
   li.append(a);
   container.innerHTML = "";
   container.appendChild(li);
 };
+const updateCount = (list, id) =>
+  (document.querySelector(`#${id}`).textContent = list.length);
 const addToCart = (event, cartList, container) => {
   // Add ID of the item to cart array list:
   if (event.target.textContent === "BUY") {
     cartList.push(event.target.parentElement.parentElement.id);
     renderCartBox(cartList, itemDataList, container);
+    if (cartList.length > 0) {
+      // Updating cart count number on UI:
+      updateCount(cartList, "cart-count");
+    }
   }
 };
 
@@ -43,6 +56,7 @@ const removeFromCart = (event, cartList, container) => {
   // Remove ID of the item to cart array list:
   if (event.target.textContent === "Remove") {
     cartList.pop(event.target.parentElement.id);
+    updateCount(cartList, "cart-count");
     renderCartBox(cartList, itemDataList, container);
   }
 };
@@ -76,7 +90,7 @@ const renderCartBox = (cartList, itemList, container) => {
           removeButton.textContent = "Remove";
           img.src = item.img;
           name.textContent = item.name;
-          price.textContent = currencyCheck(item); 
+          price.textContent = currencyCheck(item);
           price.textContent += item.price;
           // Append element:
           cartItem.append(img, name, price, removeButton);
@@ -97,9 +111,9 @@ const renderCartBox = (cartList, itemList, container) => {
 // MAIN CODE-----------------------------------------------
 // Activate Customer mode:
 activateCustumerMode(mainContainer);
-const cartDataList = [];
-const cartContainer = document.querySelector("#cart-box .cart-container");
 const cartPopup = document.querySelector("#cart-box");
+const cartContainer = document.querySelector("#cart-box .cart-container");
+const cartDataList = [];
 
 // EVENT LISTENER
 document.body.addEventListener("click", (event) => {

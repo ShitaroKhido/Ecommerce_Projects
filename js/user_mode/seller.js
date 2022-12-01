@@ -1,8 +1,70 @@
 // SELLER SIDE FUNCTION-----------------------------------
 const activateSellerMode = (container) => {
-  // Creating element for the seller option template:
+  // Creating element for the seller options template:
+  //////////////////////////////////////////////
+  // Create edit item form for seller options.//
+  //////////////////////////////////////////////
+  const editBoxContainer = document.createElement("div");
+  const editItemForm = document.createElement("form");
+  const editFormTitle = document.createElement("legend");
+  const editName = document.createElement("input");
+  const editDescription = document.createElement("input");
+  const editImgURL = document.createElement("input");
+  const editPrice = document.createElement("input");
+  const saveButton = document.createElement("button");
+  const editCurrency = document.createElement("select");
+  const editCurrencyOptoOne = document.createElement("option");
+  const editCurrencyOptTwo = document.createElement("option");
+  // Set class for each element of edit option:
+  editBoxContainer.classList.add("edit-box");
+  editCurrency.classList.add("btn", "btn-primary");
+  saveButton.classList.add("btn", "btn-primary");
+  saveButton.id = "saveEdit";
+  editItemForm.id = "edit-item";
+  // Set attribute for each element of edit option:
+  editName.setAttribute("name", "productName");
+  editDescription.setAttribute("name", "productDescription");
+  editImgURL.setAttribute("name", "productImgURL");
+  editPrice.setAttribute("name", "productPrice");
+  editCurrency.setAttribute("name", "currency");
+  // Placeholder attribute:
+  editName.setAttribute("placeholder", "Name");
+  editDescription.setAttribute("placeholder", "Description");
+  editImgURL.setAttribute("placeholder", "Images");
+  editPrice.setAttribute("placeholder", "Price");
+  // Type attribute:
+  editName.setAttribute("type", "text");
+  editDescription.setAttribute("type", "text");
+  editImgURL.setAttribute("type", "url");
+  editPrice.setAttribute("type", "number");
+  // Value attribute:
+  editCurrencyOptoOne.setAttribute("value", "riels");
+  editCurrencyOptTwo.setAttribute("value", "dollars");
+  // Set content for each edit element of edit option:
+  editCurrencyOptoOne.textContent = "Riels";
+  editCurrencyOptTwo.textContent = "Dollars";
+  editFormTitle.textContent = "Editing product";
+  saveButton.textContent = "SAVE";
+  editBoxContainer.style.display = "none";
+  // Appending edit option element:
+  editCurrency.append(editCurrencyOptoOne, editCurrencyOptTwo);
+  editItemForm.append(
+    editFormTitle,
+    editName,
+    editDescription,
+    editImgURL,
+    editPrice,
+    editCurrency,
+    saveButton
+  );
+  // Adding edit item element in to edit-box container:
+  editBoxContainer.append(editItemForm);
+
+  //////////////////////////////////////////////////////////////////////
+  // Creating add item forms and options container for seller options://                        //
+  //////////////////////////////////////////////////////////////////////
   const optionsContainer = document.createElement("div");
-  const form = document.createElement("form");
+  const addItemForm = document.createElement("form");
   const formTitle = document.createElement("legend");
   const inputName = document.createElement("input");
   const inputDescriptoin = document.createElement("input");
@@ -14,7 +76,7 @@ const activateSellerMode = (container) => {
   const currencyOptTwo = document.createElement("option");
   // Adding class name to needed element:
   optionsContainer.classList.add("seller-options");
-  form.classList.add("add-product");
+  addItemForm.classList.add("add-product");
   currency.classList.add("btn", "btn-primary");
   addItemButton.classList.add("btn", "btn-primary");
   // Set the attribute to needed element:
@@ -23,21 +85,20 @@ const activateSellerMode = (container) => {
   inputImgURL.setAttribute("name", "productImgURL");
   inputPrice.setAttribute("name", "productPrice");
   currency.setAttribute("name", "currency");
-
+  // Set values attribute:
   currencyOptOne.setAttribute("value", "riels");
   currencyOptTwo.setAttribute("value", "dollars");
-
+  // Set placeholder attribute:
   inputDescriptoin.setAttribute("placeholder", "Desscription");
   inputName.setAttribute("placeholder", "Name");
   inputImgURL.setAttribute("placeholder", "Images URL links");
   inputPrice.setAttribute("placeholder", "Price");
-
+  // Set type attribute
   inputDescriptoin.setAttribute("type", "text");
   inputName.setAttribute("type", "text");
   inputImgURL.setAttribute("type", "url");
   inputPrice.setAttribute("type", "number");
   addItemButton.setAttribute("type", "submit");
-
   // Set texts content to needed element:
   formTitle.textContent = "Add product";
   addItemButton.textContent = "ADD ITEM";
@@ -45,7 +106,7 @@ const activateSellerMode = (container) => {
   currencyOptTwo.textContent = "Dollars";
   // Appending Elements:
   currency.append(currencyOptOne, currencyOptTwo);
-  form.append(
+  addItemForm.append(
     formTitle,
     inputName,
     inputDescriptoin,
@@ -54,8 +115,12 @@ const activateSellerMode = (container) => {
     currency,
     addItemButton
   );
-  optionsContainer.append(form);
-  container.prepend(optionsContainer);
+  // Adding add item element in to options container:
+  optionsContainer.append(addItemForm);
+
+  // Adding to main container:
+  container.prepend(optionsContainer, editBoxContainer);
+
   // Render the UI as edit mode:
   renderUI(itemDataList, productContainer, "edit");
 };
@@ -118,12 +183,14 @@ const editProduct = (itemID, dataList, form, mode) => {
     }
   });
 };
+
 // MAIN CODE-----------------------------------------------
 // Activate user to seller mode:
 activateSellerMode(mainContainer);
 const saveButton = document.querySelector("#saveEdit");
 const addInForm = document.querySelector(".add-product");
 const editForm = document.querySelector("#edit-item");
+
 // EVENT LISTENER
 // Bind click event with main conatainer:
 mainContainer.addEventListener("click", (event) => {
@@ -144,12 +211,14 @@ mainContainer.addEventListener("click", (event) => {
   }
   renderUI(itemDataList, productContainer, "edit");
 });
+
 // Bind submit event with add item form:
 addInForm.addEventListener("click", (event) => {
   event.preventDefault();
-  if (event.target.textContent.trim() === "ADD ITEM"){
+  // Check if click on add item:
+  if (event.target.textContent.trim() === "ADD ITEM") {
+    // if true add data to list and render to UI:
     addItemData(addInForm, itemDataList);
     renderUI(itemDataList, productContainer, "edit");
   }
 });
-console.log(addInForm)

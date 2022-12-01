@@ -94,46 +94,41 @@ const displayToggle = (element, displayType) => {
     hide(element);
   }
 };
-// CONST AND VARIABLEs-------------------------------------------------------------
+
+// MAIN CODE-------------------------------------------------------------
 const mainContainer = document.querySelector(".container");
 const productContainer = document.querySelector(".product-views");
 const userIcons = document.querySelector("#userIcons");
 let data = [
   {
-    name: "Test",
-    description: "Test......",
-    price: 123,
+    name: "Sell Organ (Kidney)",
+    description:"This the product representation text which mean that this could be and a great thing or not bla bla bla",
+    price:20000,
     rate: 3,
-    id: idGenerator(),
-    img: "imgs/logo/Logo-color.png",
+    id: "irpoqqot",
+    img: "https://static.vecteezy.com/system/resources/previews/005/920/692/original/human-kidney-and-its-arteries-isolated-on-white-background-illustration-of-human-kidney-organ-free-vector.jpg",
+    currency: "dollars",
   },
   {
-    name: "Test",
-    description: "Test......",
-    price: 123,
-    rate: 3,
-    id: idGenerator(),
-    img: "imgs/logo/Logo-color.png",
+    name: "Sell Organ (Liver)",
+    description: "This the product representation text which mean that this could be and a great thing or not bla bla bla",
+    img: "https://img.freepik.com/free-vector/liver-anatomy-human-body_1308-81771.jpg",
+    rate: 0,
+    price: 2000,
+    currency: "dollars",
+    id: "fs7rwfx7",
   },
   {
-    name: "Test",
-    description: "Test......",
-    price: 123,
-    rate: 3,
-    id: idGenerator(),
-    img: "imgs/logo/Logo-color.png",
-  },
-  {
-    name: "Test",
-    description: "Test......",
-    price: 123,
-    rate: 3,
-    id: idGenerator(),
-    img: "imgs/logo/Logo-color.png",
+    name: "Sell Organ (Heart)",
+    description:"This the product representation text which mean that this could be and a great thing or not bla bla bla",
+    img: "https://static.vecteezy.com/system/resources/previews/004/210/260/non_2x/heart-organ-human-free-vector.jpg",
+    rate: 0,
+    price: 12000000,
+    currency: "riels",
+    id: "fk7nrcbo",
   },
 ];
 
 // saveToLocalStorage("itemDataList", data);
 let itemDataList = loadFromLocalStorage("itemDataList");
-// loadFromLocalStorage("item")
 renderUI(itemDataList, productContainer, "buy");
