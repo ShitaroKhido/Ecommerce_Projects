@@ -161,6 +161,7 @@ footer .footer-nav .nav-link:hover {
   padding: 1rem;
 }
 .card .product-info .title {
+  margin-bottom: 0.5rem;
   font-weight: 800;
   font-size: 1.5rem;
 }

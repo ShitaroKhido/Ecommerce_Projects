@@ -20,7 +20,6 @@ const createCard = (item, mode) => {
   cardRate.className = "rate";
   cardFooter.className = "card-footer";
   cardPrice.className = "price";
-
   // Check if it's buy or edit usermode:
   if (mode === "edit") {
     const removeButton = document.createElement("button");
@@ -40,13 +39,13 @@ const createCard = (item, mode) => {
   } else {
     cardRate.innerHTML = `<p>Not yet rated</p>`;
   }
-
   // Fill in each element content:
   card.id = item.id;
   cardImg.src = item.img;
   cardTitle.textContent = item.name;
   cardDescription.textContent = item.description;
-  cardPrice.textContent = item.price;
+  cardPrice.textContent = currencyCheck(item);
+  cardPrice.textContent += item.price;
   cardButton.textContent = String(mode).toUpperCase();
 
   // Directly append element to other element by using append method:
@@ -70,6 +69,9 @@ const saveToLocalStorage = (key, data) => {
 };
 
 const loadFromLocalStorage = (key) => JSON.parse(localStorage.getItem(key)); // Load data from local storage:
+
+// Check if currency type is dollars or riels:
+const currencyCheck = (item) => (item.currency === "dollars" ? "$" : "៛");
 
 const idGenerator = () => {
   let dateNow = Date.now();
@@ -130,9 +132,8 @@ let data = [
     img: "imgs/logo/Logo-color.png",
   },
 ];
+
 // saveToLocalStorage("itemDataList", data);
 let itemDataList = loadFromLocalStorage("itemDataList");
-
 // loadFromLocalStorage("item")
-console.log(itemDataList);
 renderUI(itemDataList, productContainer, "buy");

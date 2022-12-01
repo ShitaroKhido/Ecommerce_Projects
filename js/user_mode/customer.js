@@ -76,7 +76,8 @@ const renderCartBox = (cartList, itemList, container) => {
           removeButton.textContent = "Remove";
           img.src = item.img;
           name.textContent = item.name;
-          price.textContent = item.price;
+          price.textContent = currencyCheck(item); 
+          price.textContent += item.price;
           // Append element:
           cartItem.append(img, name, price, removeButton);
           container.appendChild(cartItem);

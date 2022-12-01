@@ -36,6 +36,7 @@ const activateSellerMode = (container) => {
   inputName.setAttribute("type", "text");
   inputImgURL.setAttribute("type", "url");
   inputPrice.setAttribute("type", "number");
+  addItemButton.setAttribute("type", "submit");
 
   // Set texts content to needed element:
   formTitle.textContent = "Add product";
@@ -120,27 +121,35 @@ const editProduct = (itemID, dataList, form, mode) => {
 // MAIN CODE-----------------------------------------------
 // Activate user to seller mode:
 activateSellerMode(mainContainer);
-const saveButton = document.querySelector("#save");
+const saveButton = document.querySelector("#saveEdit");
 const addInForm = document.querySelector(".add-product");
 const editForm = document.querySelector("#edit-item");
 // EVENT LISTENER
-document.addEventListener("click", (event) => {
+// Bind click event with main conatainer:
+mainContainer.addEventListener("click", (event) => {
+  event.preventDefault();
+  // Get the ID of card if clicked at it:
   let itemID = event.target.parentElement.parentElement.id;
+  // Check which element is being clicked:
   if (event.target.id === "removeItem") {
-    // console.log(itemID):
+    // If has ID remove, remove card:
     removeItemData(itemID, itemDataList);
   } else if (event.target.textContent.trim() === "EDIT") {
+    // If has content of the word EDIT:
     editProduct(itemID, itemDataList, editForm, "load");
     saveButton.setAttribute("data-id", itemID);
-  } else if (event.target.id.trim() === "save") {
-    event.preventDefault();
+  } else if (event.target.id.trim() === "saveEdit") {
+    // If has content of the id save:
     editProduct(saveButton.dataset.id, itemDataList, editForm, "save");
   }
   renderUI(itemDataList, productContainer, "edit");
 });
-
-addInForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  addItemData(addInForm, itemDataList);
-  renderUI(itemDataList, productContainer, "edit");
+// Bind submit event with add item form:
+addInForm.addEventListener("click", (event) => {
+  event.preventDefault();
+  if (event.target.textContent.trim() === "ADD ITEM"){
+    addItemData(addInForm, itemDataList);
+    renderUI(itemDataList, productContainer, "edit");
+  }
 });
+console.log(addInForm)
