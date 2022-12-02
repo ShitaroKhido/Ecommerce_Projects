@@ -1,100 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="imgs/logo/favicons.png" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.min.css" />
+    <script src="js/modules/views_template.js" defer></script>
+    <script src="js/modules/site_functions.js" defer></script>
     <title>LoukEy</title>
-    <link rel="icon" href="imgs/logo/favicons.png">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
-    <link rel="stylesheet" href="css/main.min.css">
-    <script src="js/modules/modules.js" defer></script>
-    <script src="js/user_mode/customer.js" defer></script>
-    <!-- <script src="js/user_mode/seller.js" defer></script> -->
 </head>
+
 <body>
-    <!-- NAVIGATION -->
+    <!-- NAVIGATION BAR -->
     <nav class="navbar">
         <ul class="nav">
-            <!-- LOGO -->
-            <li class="nav-item"><a href="index.html"><img src="imgs/logo/Logo-color.png" alt="logo" class="nav-logo"></a></li>
-            <!-- SHOP LINK -->
-            <li class="nav-item"><a href="index.html" class="nav-link">Shops</a></li>
-            <!-- DROPDOWN MENU -->
-            <li class="nav-item dropdown-button">
-                <a href="" class="nav-link">Categories</a>
-                <ul class="dropdown">
-                    <li class="nav-item"><a href="#" class="nav-link">Specials Sale</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Discount</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Store</a></li>
+            <li class="nav-item">
+                <img src="imgs/logo/Logo-color.png" alt="site-logo" class="nav-logo" />
+            </li>
+            <li class="nav-item"><a href="#" class="nav-link">Shop</a></li>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link">Categories</a>
+                <ul class="dropdown-content">
+                    <li class="dropdown-item">
+                        <a href="#" class="nav-link">Cloths</a>
+                    </li>
+                    <li class="dropdown-item">
+                        <a href="#" class="nav-link">Households</a>
+                    </li>
+                    <li class="dropdown-item">
+                        <a href="#" class="nav-link">DIY Sales</a>
+                    </li>
+                    <li class="dropdown-item">
+                        <a href="#" class="nav-link">Electronics</a>
+                    </li>
+                    <li class="dropdown-item innerdropdown">
+                        <a href="#" class="nav-link">Accessories</a>
+                        <ul class="dropdown-content inner-content">
+                            <li class="dropdown-item">
+                                <a href="#" class="nav-link">Cloths</a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a href="#" class="nav-link">Households</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown-item innerdropdown">
+                        <a href="#" class="nav-link">More</a>
+                        <ul class="dropdown-content inner-content">
+                            <li class="dropdown-item">
+                                <a href="#" class="nav-link">Cloths</a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a href="#" class="nav-link">Households</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
-            <!-- NAVIGATION LINKS -->
-            <li class="nav-item"><a href="#" class="nav-link">Collections</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Abouts</a></li>
-            <!-- SEACRH-BAR -->
-            <li class="search-bar nav-item">
-                <div class="search">
-                    <input type="search" placeholder="Seach" id="search-box">
-                    <a href="#" class="search-btn"><i class="material-icons">search</i></a>
-                </div>
+        </ul>
+        <ul class="nav">
+            <li class="nav-item search-section">
+                <form class="search-box">
+                    <input type="search" name="search-box" placeholder="Search">
+                    <i class="material-icons btn btn-primary" id="search">search</i>
+                </form>
             </li>
         </ul>
-        <ul class="nav" id="userIcons">
-            <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
+        <ul class="nav" id="usermode">
+            <li class="nav-item" id="login">
+                <a href="#" class="nav-link">Login</a>
+            </li>
         </ul>
     </nav>
 
 
-    <!-- CONTAINER -->
+
+    <!-- MAIN CONTAINER -->
     <div class="container">
-        <!-- PRODUCT VIEWS CONTAINER -->
-        <div class="product-views">
-            <div class="card">
-                <img src="imgs/logo/Logo-dark.png" alt="..." class="product-img">
-                <div class="product-info">
-                    <div class="title">Title</div>
-                    <div class="description">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    </div>
-                    <div class="rate"><i class="material-icons">star</i></div>
-                </div>
-                <div class="card-footer">
-                    <span class="price">$999</span>
-                    <button class="buy btn btn-primary">Buy</button>
-                </div>
-            </div>
+        <!-- COVER -->
+        <div class="cover">
+            <h1>WANNA BUY EY RIGHT?</h1>
+            <h3>YOU CAN BUT IT HERE !!!</h3>
+            <button class="btn btn-secondary">Go Shopping</button>
+        </div>
 
-
+        <div class="search-section">
+            <form class="search-box">
+                <input type="search" name="search-box" placeholder="Search">
+                <i class="material-icons btn btn-primary" id="search">search</i>
+            </form>
+            <form class="search-filter">
+                <select name="categories">
+                    <option selected disabled>Categories</option>
+                    <option value="">Electronics</option>
+                    <option value="">Households</option>
+                    <option value="">Cloths</option>
+                    <option value="">DIY Items</option>
+                    <option value="">Accessories</option>
+                </select>
+                <select name="country">
+                    <option selected disabled>Country</option>
+                    <option value="kh">Cambodia</option>
+                    <option value="uk">United Kindom</option>
+                    <option value="us">United State</option>
+                </select>
+                <select name="pirceRange">
+                    <option selected disabled>Price range</option>
+                    <option value="low">Low to High</option>
+                    <option value="high">High to Low</option>
+                </select>
+                <select name="alphabetical">
+                    <option selected disabled>From letters</option>
+                    <option value="a">A to Z</option>
+                    <option value="z">Z to A</option>
+                </select>
+            </form>
         </div>
 
 
     </div>
 
-
-
-    <!-- FOOTER -->
     <footer>
-        <!-- FOOTER NAVIAGTION LINKS -->
-        <div class="footer-nav navbar">
+        <nav class="navbar">
             <ul class="nav">
-                <li class="nav-item"><a href="#" class="nav-link">Shops</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Collections</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Shop</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Abouts</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">News</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">contact</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Specials</a></li>
             </ul>
-        </div>
-        <!-- CONTACT -->
-        <div class="footer-contact">
-            <img src="imgs/logo/Logo-light.png" alt="..." id="foot-img">
-            <h3>Contact</h3>
-            <ul>
-                <li>Email: Thismail@gmail.com</li>
-                <li>Phone: +123 456 789</li>
-                <li>Location: Phnom Penh, Cambodia.</li>
-            </ul>
-            <p>Copyrights &copy; and reserved by Pagna Khid.</p>
-        </div>
+        </nav>
+        <img src="imgs/logo/Logo-light.png">
+        <p>Email: khid.pagna@student.passerellesnumeriques.org</p>
+        <p>Location: Phnom Penh, Cambodia.</p>
+        <p>Phone: +000 000 000 000</p>
+        <p>Copyrights &copy; and reserved by Pagna Khid.</p>
     </footer>
 </body>
+
 </html>

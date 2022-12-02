@@ -1,38 +1,53 @@
-// FONTS IMPORTS
+// FONTS
 @font-face {
-    font-family: Montserrat;
-    src: url(/fonts/Montserrat/Montserrat-VariableFont_wght.ttf);
+  font-family: Montserrate;
+  src: url(/fonts/Montserrat/Montserrat-VariableFont_wght.ttf);
 }
-
-// VARIABLES & MIXIN
+// MIXIN AND VARIABLES
 @import "./variables";
 @import "./mixin";
-
 // MAIN CODE
-body{
-    margin: 0;
-    height: 100vh;
-    font-family: Montserrat, 'Courier New', Courier, monospace;
-    display: flex;
-    flex-direction: column;
-    .container{
-        flex: 1;
-        .product-views{
-            padding: 2rem 1rem;
-            @include goFlex(center, flex-start, row);
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
+body {
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+  font-family: Montserrate, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+  @include goFlex(unset, unset, column);
+  .container {
+    flex: 1;
+    .cover {
+      @include goFlex(center,center, column);
+      color: $second-color-2;
+      background-color: $prime-color;
+      padding: 3rem;
     }
+  }
 }
+
 // IMPORTS
 @import "./components/navbar";
 @import "./components/foot";
 @import "./components/button";
 @import "./components/card";
-@import "./components/search_bar";
-@import "./components/cart_box";
-
+@import "./components/search";
 
 // LAYOUTS
-@import "./layouts/sell_views";
+@import "./layouts/form";
+@import "./layouts/product_details";
+@import "./layouts/cart";
+@import "./layouts/checkout";
+
+// Code form W3SCHOOL
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

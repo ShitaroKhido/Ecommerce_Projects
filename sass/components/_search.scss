@@ -1,0 +1,72 @@
+.search-section{
+    padding: 4rem 1rem;
+    margin: auto;
+    min-width: 20rem;
+    max-width: 40rem;
+    .search-box{
+        background-color: grey;
+        @include goFlex();
+        input[type=search]{
+            width: 100%;
+            padding: 0.5rem;
+            border: none;
+            outline: none;
+            border:2px solid $prime-color-2 ;
+            &:focus{
+                border-color: $prime-color;
+            }
+        }
+        #search{
+            &:hover{
+                cursor: pointer;
+            }
+        }
+    }
+    .search-container{
+        // position: absolute;
+        @include container($min-w:20rem, $max-w:40rem,);
+        .search{
+            .item{
+                position: relative;
+                height: 2rem;
+                padding: 1rem;
+                @include goFlex(space-between, center);
+                gap: 1rem;
+                img{
+                    width: 8rem;
+                }
+                .item-name{
+                    overflow: hidden;
+                    text-overflow: clip;
+                    white-space: nowrap;
+                }
+                &:hover{
+                    cursor: pointer;
+                    @include color-and-background($second-color-2,$prime-color);
+                }
+            }
+        }
+    }
+    .search-filter{
+        display: flex;
+        select{
+            width: 100%;
+            padding: 0.5rem;
+            border: none;
+            outline: none;
+            border:2px solid $prime-color-2 ;
+            &:focus{
+                border-color: $prime-color;
+            }
+        }
+    }
+}
+// Code from: https://medium.com/@rion.mrk/how-to-remove-x-icon-from-search-input-field-or-input-type-search-db3c808405fb
+/* clears the ‘X’ from Internet Explorer */
+input[type=search]::-ms-clear { display: none; width : 0; height: 0; }
+input[type=search]::-ms-reveal { display: none; width : 0; height: 0; }
+/* clears the ‘X’ from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }

@@ -1,0 +1,22 @@
+#add-item-container{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    @include goFlex(center,center);
+    #add-item-form{
+        background-color: $second-color-2;
+        @include product-form-style;
+    }
+}
+#edit-item-container{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    @include goFlex(center,center);
+    #edit-item-form{
+        background-color: $second-color-2;
+        @include product-form-style;
+    }
+}

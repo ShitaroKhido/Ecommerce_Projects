@@ -1,35 +1,40 @@
 .card{
+    position: relative;
+    top: 0;
     width: 18rem;
-    height: 30rem;
-    display: block;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    @include goFlex(space-between, unset , column);
-    .product-img{
-        width: 18rem;
-        height: 180px;
+    height: 24rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 4px 8px 0px;
+    transition: 0.3s box-shadow, 0.3s top;
+    @include goFlex(space-between, unset, column);
+    &-img{
+        width: 100%;
+        height: 12rem;
+        border-bottom: 2px solid $prime-color-2;
+
     }
-    .product-info{
-        padding: 1.5rem;
-        .title{
-            margin-bottom: 0.5rem;
-            font-weight: 800;
-            font-size: 1rem;
+    &-body{
+        padding: 0.5rem 1.5rem;
+        .tite{
+            margin: 0;
         }
-        .rate i{
-            font-size: 16px;
-            margin: {
-                top: 1rem;
-            };
+        .description{
+            overflow: hidden;
+            font-size: 14px;
+        }
+        .rate{
+            @include marg-padd-0;
+            font-size: 30px;
         }
     }
-    &-footer{
-        padding: 1rem;
-        display: flex;
-        justify-content: space-between;
+    &-foot{
+        @include goFlex(space-between, center);
+        padding: 1rem 1.5rem;
     }
     &:hover{
-        transition: 0.3s box-shadow;
-        cursor: pointer;
-        box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 18px;
+        top: -1.5rem;
     }
+}
+
+.product-display{
+    padding: 10rem;
 }

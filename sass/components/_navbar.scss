@@ -1,44 +1,68 @@
 .navbar{
-    @include goFlex(space-between);
+    @include goFlex(space-between,center);
+    padding-right: 2rem;
     .nav{
-        @include goFlex(flex-start, center, row);
-        &-logo{
-            margin: -1rem -2rem;
-            width: 10rem;
-        }
-        &-item{
-            @include marg-padd-0;
-            list-style: none;
-        }
-        &-link{
-            text-decoration: none;
-            color: $prime-color;
-            padding: 1rem 2rem;
-            border-bottom: 2px solid transparent;
-            transition: 0.3s border;
-            &:hover{
-                border-bottom-color: $prime-color;
+        @include marg-padd-0;
+        @include goFlex(unset, center, row);
+        .search-section{
+            padding: 0;
+            .search-container{
+                position: absolute!important;
             }
         }
-        // Dropdown menu stylinga
-        .dropdown-button{
-            transition: 0.3s display;
-            &:hover .dropdown{
-                display: block;
+        &-logo{
+            width: 16rem;
+            margin: -0.5rem -2rem;
+        }
+        &-item{
+            list-style-type: none;
+        }
+        &-link{
+            @include color-and-background($prime-color);
+            border-bottom: 2px solid transparent;
+            text-decoration: none;
+            padding: 1rem;
+            transition: 0.4s display, 0.3s color, 0.3s border, 0.3s box-shadow;
+            &:hover{
+                border-bottom-color: $prime-color;
+                color:  $second-color;
             }
         }
         .dropdown{
-            display: none;
-            position: absolute;
-            @include marg-padd-0;
-            margin-top: 10px;
-            background-color: $second-color-2;
-            box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 18px;
-            .nav-item{
-                a{
-                    display: block;
+            width: fit-content;
+            .dropdown-content{
+                background-color: $second-color-2;
+                display: none;
+                flex-direction: column;
+                margin-top: 1rem;
+                position: absolute;
+                padding: 0;
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 4px 8px 0px;
+                .dropdown-item{
+                    width: fit-content;
+                    list-style-type: none;
+                    a{
+                        display: block;
+                        width: 10rem;
+
+                    }
                 }
+                .innerdropdown{
+                    position: relative;
+                    @include goFlex(flex-end);
+                    & > .dropdown-content{
+                        display: none;
+                        position: relative;
+                    }
+                    &:hover .inner-content{
+                        display: block;
+                    }
+                }
+                }
+                &:hover .dropdown-content{
+                display: block;
             }
         }
-    }
+
+    }   
 }

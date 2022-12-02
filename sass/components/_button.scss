@@ -1,18 +1,20 @@
 .btn{
-    padding: 0.5rem 1rem;
-    border: 2px solid $prime-color-2;
-    background-color: transparent;
     &-primary{
-        @include button-style($prime-color,$second-color-2);
+        padding: 0.5rem 1rem;
+        border: 2px solid transparent;
+        background-color: transparent;
+        @include button-style($prime-color, $second-color-2)
     }
-    &-second{
-        @include button-style($second-color-2 ,$prime-color);
+    &-secondary{
+        padding: 0.5rem 1rem;
+        border: 2px solid transparent;
+        @include button-style($second-color-2, $prime-color)
     }
     &-danger{
-        @include button-style(#ff0000 ,$second-color-2);
+        padding: 0.5rem 1rem;
+        border: 2px solid transparent;
+        background-color: transparent;
+        @include button-style(red, $second-color-2)
     }
-    transition: 0.3s border, 0.3s color, 0.3s background-color;
-    &:hover{
-        cursor: pointer;
-    }
+
 }
