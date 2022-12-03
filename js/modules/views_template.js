@@ -262,6 +262,37 @@ export const createCard = (cardData, buttonName = [], buttonType) => {
   return card;
 };
 
+export const cart = (id) => {
+  const cart = document.createElement("div");
+  const title = document.createElement("div");
+
+  cart.className = 'cart'
+  card.id = id;
+  title = "Your cart list";
+  cart.appendChild(title);
+}
+
+export const cartItem = (productData)=>{
+  const item = document.createElement("div");
+  const img = document.createElement("img");
+  const title = document.createElement("div");
+  const button = document.createElement("button");
+
+  item.className = "item";
+  title.className = "item-title";
+  button.classList.add("btn", "btn-good");
+  button.textContent = priceCheckToText(productData.currency, productData.price);
+  
+  item.append(
+    img,
+    title,
+    button,
+  )
+  return item;
+
+}
+
+
 // CONVERT PRICE TO TEXT:
 const priceCheckToText = (type, amount) => {
   let price = "";

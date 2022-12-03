@@ -83,9 +83,6 @@ const renderUI = (productDataList = Array, userMode = String) => {
     }
   });
 };
-const idGenerator = () => Date.now().toString(36);
-const addTocart = () => {};
-const removeFromCart = () => {};
 const hideElement = (element = Node) => {
   element.style.display = "none";
 };
@@ -101,6 +98,9 @@ const toggleDisplay = (element, displayType = "flex") => {
   }
 };
 
+const idGenerator = () => Date.now().toString(36);
+const addTocart = () => {};
+const removeFromCart = () => {};
 // NOTE: Main data key for this site is productDataList.
 // To load data to local storage, use this function:
 // saveToLocalStorage("productDataList", data)
@@ -181,8 +181,11 @@ if (input === 1) {
   });
 } else if(input === 2){
   renderUI(productDataList, "customer")
+  // Add details views to container and hide it:
+  let productData = productDataList[0];
   const checkoutViews = creatCheckout("checkout", productDataList[0]);
   container.appendChild(checkoutViews);
+  toggleDisplay(checkoutViews);
   container.addEventListener("click", (event) => {
     // Prevent event bulbbling and default browser action:
     event.preventDefault();
@@ -191,6 +194,7 @@ if (input === 1) {
     if (event.target.id === "buy-card") {
       
     } else if (event.target.id === "details-card") {
+      toggleDisplay(checkoutViews)
     } 
   });
 }
