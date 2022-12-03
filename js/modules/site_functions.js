@@ -13,12 +13,16 @@ const loadFromLocalStorage = (key = String) => {
   // LOAD DATA FROM BROWSER LOCAL STORAGE
   return JSON.parse(localStorage.getItem(key));
 };
-const deleteProduct = (productDataList, productId) => {
+const deleteProduct = (productDataList = Array, productId) => {
   productDataList.forEach((item, index) => {
+    console.log(productId);
     if (item.id === productId) {
-      productDataList.pop(index);
+      productDataList.pop([index])
+      saveToLocalStorage("productDataList", productDataList)
+      renderUI(productDataList,"editor")
     }
   });
+  
 };
 const createProduct = (productDataList = Array, form) => {
   // CREATE PRODUCT DATA AND APPEND IT TO DATA LIST:
@@ -31,6 +35,7 @@ const createProduct = (productDataList = Array, form) => {
   newData.img = form.img.value;
   newData.id = idGenerator();
   newData.rate = 0;
+  newData.views = 0;
   newData.currency = form.currency.value;
   productDataList.push(newData);
   console.log(productDataList);
@@ -145,7 +150,8 @@ if (input === 1) {
     } else if (event.target.id === creatButton.id) {
       toggleDisplay(addProductFormContainer);
     } else if (event.target.id === "delete-card") {
-      deleteProduct([productDataList, targetId]);
+      targetId = event.target.parentElement.parentElement.id;
+      deleteProduct(productDataList, targetId);
     }
   });
   editProductFormContainer.addEventListener("click", (event) => {
@@ -162,11 +168,14 @@ if (input === 1) {
   addProductFormContainer.addEventListener("click", (event) => {
     event.preventDefault();
     event.stopPropagation();
-    console.log(event.target.textContent);
+    console.log(event.target);
     if (event.target.textContent === "CONFIRMS") {
       createProduct(productDataList, addForm);
       toggleDisplay(addProductFormContainer);
-    } else if (event.target.id === "add-form-container") {
+    } else if (
+      event.target.textContent === "CANCEL" ||
+      event.target.id === "add-form-container"
+    ) {
       toggleDisplay(addProductFormContainer);
     }
   });
