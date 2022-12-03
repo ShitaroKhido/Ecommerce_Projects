@@ -227,13 +227,14 @@ export const createCard = (cardData, buttonName = [], buttonType) => {
       }
     }
   });
-
+  // This line 231 is to prevent the multiple show star bug
+  rate.textContent = `Rate : `;
   // Create star sign which fit with rate values:
   for(let i=0; i< Math.round(cardData.views); i++){
     const i = document.createElement("i");
+    rate.textContent = `Rate : `;
     i.className = "material-icons";
     i.textContent = "star";
-    rate.textContent = `Rate : `;
     rate.appendChild(i)
   }
 
