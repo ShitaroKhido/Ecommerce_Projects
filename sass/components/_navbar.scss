@@ -18,7 +18,7 @@
             list-style-type: none;
         }
         &-link{
-            @include color-and-background($prime-color);
+            color: $prime-color;
             border-bottom: 2px solid transparent;
             text-decoration: none;
             padding: 1rem;

@@ -1,54 +1,73 @@
-.card{
-    position: relative;
-    top: 0;
-    width: 20rem;
-    height: 24rem;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 4px 8px 0px;
-    transition: 0.3s box-shadow, 0.3s top;
-    @include goFlex(space-between, unset, column);
-    &-img{
-        width: 100%;
-        height: 12rem;
-        border-bottom: 2px solid $prime-color-2;
+.card {
+  top: 0;
+  width: 18rem;
+  // max-height: 28rem;
+  position: relative;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  transition: 0.3s top, 0.3s box-shadow;
+  &-image {
+    width: inherit;
+    height: 6rem;
+  }
+  &-body {
+    width: 16rem;
+    padding: 1rem 1.5rem;
+    text-align: left;
+    .card-title {
+      font-weight: 800;
+      font-size: 1.5rem;
+      margin: 0;
+    }
+    .card-description {
+      width: inherit;
+      height: 4rem;
+      font-size: 1rem;
+      padding: 0.2rem 0;
+      overflow-wrap: hidden;
+      text-overflow: hidden;
+      overflow: hidden;
+    }
+    .card-rate {
+      font-weight: 800;
+      padding: 4px 0;
+      i{
+        color: $prime-color;
+        font-size: 14px;
+        position: relative;
+        top: 2px;
+      }
+    }
+    .card-views {
+        color: $prime-color;
+        font-weight: 800;
+        font-size: 14px;
 
     }
-    &-body{
-        padding: 0.5rem 1.5rem;
-        .tite{
-            margin: 0;
-        }
-        .description{
-            overflow: hidden;
-            text-overflow: clip;
-            white-space: nowrap;
-            font-size: 14px;
-        }
-        .rate{
-            @include marg-padd-0;
-            font-size: 30px;
-        }
+  }
+  .card-footer {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem;
+    .card-price {
+      font-weight: 800;
+      margin-right: auto;
+      text-align: center;
+      padding: 0.5rem;
     }
-    &-foot{
-        @include goFlex(space-between, center);
-        padding: 1rem 1.5rem;
-    }
-    &:hover{
-        top: -1.5rem;
-        cursor: pointer;
-    }
+  }
+  &:hover{
+    cursor: pointer;
+    top: -1rem;
+    box-shadow: rgba(149, 157, 165, 0.4) 10px 18px 14px;
+
+  }
 }
 
-.product-display{
-    padding: 2rem;
-    @include goFlex(center,center,column);
-    flex-wrap: wrap;
-    // display: grid;
-    gap: 2rem;
-    .product{
-        padding: 2rem;
-        @include goFlex(center,center);
-        flex-wrap: wrap;
-        // display: grid;
-        gap: 2rem;
-    }
+.card-container {
+  margin: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 }

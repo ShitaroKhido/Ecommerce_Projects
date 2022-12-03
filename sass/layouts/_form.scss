@@ -1,22 +1,37 @@
-#add-item-container{
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    @include goFlex(center,center);
-    #add-item-form{
-        background-color: $second-color-2;
-        @include product-form-style;
-    }
+#edit-form-container {
+  @include formContainerStyle;
+  .edit-form {
+    @include formStyle;
+  }
 }
-#edit-item-container{
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    @include goFlex(center,center);
-    #edit-item-form{
-        background-color: $second-color-2;
-        @include product-form-style;
+#add-form-container {
+  @include formContainerStyle;
+  .add-form {
+    @include formStyle;
+  }
+}
+#checkout-form-container {
+    @include formContainerStyle;
+    .checkout-form {
+      @include formStyle;
+      .input-wrong{
+        transition: 0.3s border;
+        border: 2px solid rgba(255, 0, 0, 0.534);
+      }
     }
+  }
+
+
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: $prime-color-2;
+}
+::-webkit-scrollbar-thumb {
+  background: $prime-color;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: $second-color;
 }

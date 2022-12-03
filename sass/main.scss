@@ -24,6 +24,7 @@ body {
     }
     .container {
       flex: 1;
+      @include goFlex(center, unset, column)
     }
   }
 }

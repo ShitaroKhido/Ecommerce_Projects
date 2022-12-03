@@ -8,7 +8,7 @@ const data = [
     img: "imgs/logo/Logo-color.png",
     country: "uk",
     price: 259,
-    currency: "usd",
+    currency: "euro",
     id: "1340",
   },
   {
@@ -20,7 +20,7 @@ const data = [
     img: "imgs/logo/Logo-color.png",
     country: "uk",
     price: 2359,
-    currency: "usd",
+    currency: "dollar",
     id: "1540",
   },
 ];

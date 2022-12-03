@@ -1,554 +1,275 @@
-// THIS FILES CONTAINS UI FUNCTION WHICH GENERATE THE ELEMENT INTO HTML FILES.
-
-// FUNCTIONS------------------------------------------
-const productForm = (formMode = String(), containers) => {
-  // CREATE DOM ELEMENTS.
-  const container = document.createElement("div");
+export const createForm = (name) => {
+  // THIS FORM IS TEPLATE FOR EDIT AND ADD PRODUCT FORM:
+  // Using two type of name to match with style: add edit
+  const container = document.createElement("form");
   const form = document.createElement("form");
-  const button = document.createElement("button");
   const legend = document.createElement("legend");
-  const textarea = document.createElement("textarea");
   const inputName = document.createElement("input");
-  const inputImgURL = document.createElement("input");
+  const inputImage = document.createElement("input");
   const inputPrice = document.createElement("input");
-  const selectCountry = document.createElement("select");
-  const selectCurrency = document.createElement("select");
-  const selectCategories = document.createElement("select");
-  // Country options:
-  const selectCountryTwo = document.createElement("option");
-  const selectCountryOne = document.createElement("option");
-  const selectCountryThree = document.createElement("option");
-  const selectCountryFour = document.createElement("option");
-  // Currency options:
-  const selectCurrencyOne = document.createElement("option");
-  const selectCurrencyTwo = document.createElement("option");
-  const selectCurrencyThree = document.createElement("option");
-  // Categories options:
-  const selectCategoriesOne = document.createElement("option");
-  const selectCategoriesTwo = document.createElement("option");
-  const selectCategoriesThree = document.createElement("option");
-  const selectCategoriesFour = document.createElement("option");
-  const selectCategoriesFive = document.createElement("option");
-  const selectCategoriesSix = document.createElement("option");
-  // ADD ATTRIBUTE TO ELEMENTS.
-  // Placeholder attribute
-  inputName.setAttribute("placeholder", "Product name");
-  inputImgURL.setAttribute("placeholder", "Image URL");
-  inputPrice.setAttribute("placeholder", "Prices");
-  // Name attribute
+  const inputDescription = document.createElement("textarea");
+
+  container.id = `${name}-form-container`;
+  form.className = `${name}-form`;
+  legend.className = `${name}-legend`;
+  legend.textContent = `${name.toUpperCase()} PRODUCT`;
   inputName.setAttribute("name", "name");
-  inputImgURL.setAttribute("name", "image");
+  inputImage.setAttribute("name", "img");
   inputPrice.setAttribute("name", "price");
-  selectCurrency.setAttribute("name", "currency");
-  selectCountry.setAttribute("name", "country");
-  selectCategories.setAttribute("name", "categories");
-  textarea.setAttribute("name", "description");
-  // Type attribute
+  inputDescription.setAttribute("name", "description");
+
+  inputName.setAttribute("placeholder", "Product name");
+  inputImage.setAttribute("placeholder", "Images URL");
+  inputPrice.setAttribute("placeholder", "Prices");
+  inputDescription.setAttribute("placeholder", "Description");
+
   inputName.setAttribute("type", "text");
-  inputImgURL.setAttribute("type", "url");
+  inputImage.setAttribute("type", "url");
   inputPrice.setAttribute("type", "number");
 
-  selectCountryOne.setAttribute("selected", "");
-  selectCountryOne.setAttribute("disabled", "");
-  selectCountryTwo.setAttribute("value", "kh");
-  selectCountryThree.setAttribute("value", "uk");
-  selectCountryFour.setAttribute("value", "us");
-
-  selectCurrencyOne.setAttribute("selected", "");
-  selectCurrencyOne.setAttribute("disabled", "");
-  selectCurrencyTwo.setAttribute("value", "usd");
-  selectCurrencyThree.setAttribute("value", "riels");
-
-  selectCategoriesOne.setAttribute("selected", "");
-  selectCategoriesOne.setAttribute("disabled", "");
-  selectCategoriesTwo.setAttribute("value", "electronics");
-  selectCategoriesThree.setAttribute("value", "households");
-  selectCategoriesFour.setAttribute("value", "cloths");
-  selectCategoriesFive.setAttribute("value", "diy");
-  selectCategoriesSix.setAttribute("value", "accessories");
-
-  selectCountryOne.textContent = "Country";
-  selectCountryTwo.textContent = "Cambodia";
-  selectCountryThree.textContent = "United Kindom";
-  selectCountryFour.textContent = "United State";
-
-  selectCurrencyOne.textContent = "Currency";
-  selectCurrencyTwo.textContent = "USD";
-  selectCurrencyThree.textContent = "Riels";
-
-  selectCategoriesOne.textContent = "Categories";
-  selectCategoriesTwo.textContent = "Electronics";
-  selectCategoriesThree.textContent = "Households";
-  selectCategoriesFour.textContent = "Cloths";
-  selectCategoriesFive.textContent = "DIY Items";
-  selectCategoriesSix.textContent = "Accessories";
-
-  // ADD MORE ELEMENT HERE IF NECESSARY
+  const confirmButton = document.createElement("button");
   const cancelButton = document.createElement("button");
-  cancelButton.classList.add("btn", "btn-primary");
+  confirmButton.classList.add("btn", "btn-good");
+  cancelButton.classList.add("btn", "btn-danger");
+  confirmButton.textContent = `CONFIRMS`;
   cancelButton.textContent = "CANCEL";
+  confirmButton.setAttribute("type", "submit");
+  // cancelButton.setAttribute("type", "submit");
 
-  // CHECK form mode MODE
-  button.classList.add("btn", "btn-primary");
-  button.id = `${formMode.trim().toLowerCase()}-product`;
-  button.textContent = "SAVE";
-  form.id = `${formMode.trim().toLowerCase()}-item-form`;
-  container.id = `${formMode.trim().toLowerCase()}-item-container`;
+  const categories = document.createElement("select");
+  const country = document.createElement("select");
+  const currency = document.createElement("select");
+  categories.setAttribute("name", "categories");
+  country.setAttribute("name", "country");
+  currency.setAttribute("name", "currency");
 
-  if (formMode.trim().toLowerCase() === "add") {
-    textarea.setAttribute("placeholder", "Product descriptions.");
-    textarea.setAttribute("required", "");
-    button.textContent = formMode.trim().toUpperCase();
-  }
-  legend.textContent = `${formMode.trim()} product`;
+  const categOption1 = document.createElement("option");
+  const categOption2 = document.createElement("option");
+  const categOption3 = document.createElement("option");
+  const categOption4 = document.createElement("option");
+  categOption1.setAttribute("selected", "");
+  categOption1.setAttribute("disabled", "");
+  categOption2.setAttribute("value", "electronics");
+  categOption3.setAttribute("value", "clothes");
+  categOption4.setAttribute("value", "diy");
+  categOption1.textContent = "Categories";
+  categOption2.textContent = "Electronics";
+  categOption3.textContent = "Clothes";
+  categOption4.textContent = "DIY Items";
 
-  selectCountry.append(
-    selectCountryOne,
-    selectCountryTwo,
-    selectCountryThree,
-    selectCountryFour
+  const countryOption1 = document.createElement("option");
+  const countryOption2 = document.createElement("option");
+  const countryOption3 = document.createElement("option");
+  const countryOption4 = document.createElement("option");
+  countryOption1.setAttribute("selected", "");
+  countryOption1.setAttribute("disabled", "");
+  countryOption2.setAttribute("value", "kh");
+  countryOption3.setAttribute("value", "uk");
+  countryOption4.setAttribute("value", "us");
+  countryOption1.textContent = "Country";
+  countryOption2.textContent = "Cambodia";
+  countryOption3.textContent = "United Kingdom";
+  countryOption4.textContent = "United State";
+
+  const currencyOption1 = document.createElement("option");
+  const currencyOption2 = document.createElement("option");
+  const currencyOption3 = document.createElement("option");
+  const currencyOption4 = document.createElement("option");
+  currencyOption1.setAttribute("selected", "");
+  currencyOption1.setAttribute("disabled", "");
+  currencyOption2.setAttribute("value", "riel");
+  currencyOption3.setAttribute("value", "euro");
+  currencyOption4.setAttribute("value", "dollar");
+  currencyOption1.textContent = "Curreny";
+  currencyOption2.textContent = "Riels ៛";
+  currencyOption3.textContent = "Euro €";
+  currencyOption4.textContent = "Dollars $";
+
+  categories.append(categOption1, categOption2, categOption3, categOption4);
+
+  country.append(
+    countryOption1,
+    countryOption2,
+    countryOption3,
+    countryOption4
   );
-  selectCategories.append(
-    selectCategoriesOne,
-    selectCategoriesTwo,
-    selectCategoriesThree,
-    selectCategoriesFour,
-    selectCategoriesFive,
-    selectCategoriesSix
+
+  currency.append(
+    currencyOption1,
+    currencyOption2,
+    currencyOption3,
+    currencyOption4
   );
-  selectCurrency.append(
-    selectCurrencyOne,
-    selectCurrencyTwo,
-    selectCurrencyThree
-  );
+
   form.append(
     legend,
     inputName,
-    inputImgURL,
-    inputPrice,
-    selectCurrency,
-    selectCountry,
-    selectCategories,
-    textarea,
-    button,
-    cancelButton
-  );
-  container.appendChild(form);
-  return containers.appendChild(container);
-};
-
-const productCard = (data, cardMode = String(), container) => {
-  // CREATE ELEMENTS
-  const card = document.createElement("div");
-  const cardBody = document.createElement("div");
-  const cardFoot = document.createElement("div");
-  const img = document.createElement("img");
-  const title = document.createElement("h3");
-  const description = document.createElement("p");
-  const rate = document.createElement("div");
-  const price = document.createElement("div");
-  const button = document.createElement("button");
-  // Add class
-  card.className = "card";
-  cardBody.className = "card-body";
-  cardFoot.className = "card-foot";
-  img.className = "card-img";
-  title.className = "title";
-  description.className = "description";
-  rate.className = "rate";
-  price.className = "price";
-  button.classList.add("btn", "btn-good");
-  // Add contents
-  img.src = data.img;
-  title.textContent = data.name;
-  description.textContent = data.description;
-  rate.textContent = data.rate;
-  price.textContent = checkCurrencyType(data.currency, data.price);
-  // Set ID to each card:
-  card.id = data.id;
-
-  if (cardMode.trim() === "edit") {
-    button.textContent = "EDIT ITEM";
-    button.id = "edit-product";
-    const delBtn = document.createElement("button");
-    delBtn.classList.add("btn", "btn-danger");
-    delBtn.id = "delete-product";
-    delBtn.textContent = "DELETE";
-    cardFoot.append(delBtn);
-  } else if (cardMode.trim() === "sell") {
-    button.textContent = "BUY";
-    button.id = "buy-product";
-    const detailbutton = document.createElement("button");
-    detailbutton.classList.add("btn", "btn-primary");
-    detailbutton.id = "details";
-    detailbutton.textContent = "DETAILS";
-    cardFoot.prepend(detailbutton);
-  }
-  cardFoot.append(button, price);
-  cardBody.append(title, description, rate);
-  card.append(img, cardBody, cardFoot);
-  return container.appendChild(card);
-};
-
-const productDetails = (productData, containers) => {
-  const container = document.createElement("div");
-  const product = document.createElement("div");
-  const info = document.createElement("div");
-  const img = document.createElement("img");
-
-  const br = document.createElement("br");
-  const name = document.createElement("h3");
-  const descriptions = document.createElement("div");
-  const categories = document.createElement("div");
-  const rate = document.createElement("div");
-  const views = document.createElement("div");
-  const country = document.createElement("div");
-  const price = document.createElement("div");
-  const addButton = document.createElement("button");
-  const cancelButton = document.createElement("button");
-
-  const descriptionsSpan = document.createElement("span");
-  const categoriesSpan = document.createElement("span");
-  const rateSpan = document.createElement("span");
-  const viewsSpan = document.createElement("span");
-  const countrySpan = document.createElement("span");
-
-  // ADD CLASS & ID TO ELEMENTS
-  container.id = "product-details-container";
-  product.id = "product-details";
-  info.className = "details";
-
-  name.className = "title";
-  descriptionsSpan.className = "descriptions";
-  categoriesSpan.className = "categories";
-  rateSpan.className = "rate-count";
-  viewsSpan.className = "views-count";
-  countrySpan.className = "country";
-  price.className = "price";
-  addButton.classList.add("btn", "btn-primary");
-  cancelButton.classList.add("btn", "btn-primary");
-  cancelButton.id = "cancel-detail";
-  addButton.id = "add-to-cart";
-
-  // ADD CONTENT TO ELEMENTS
-  descriptions.textContent = "Product descriptions: ";
-  categories.textContent = "Categories: ";
-  rate.textContent = "User rates: ";
-  views.textContent = "Views: ";
-  country.textContent = "Country: ";
-  addButton.textContent = "ADD TO CART";
-  cancelButton.textContent = "CANCEL";
-  name.textContent = productData.name;
-  descriptionsSpan.textContent = productData.description;
-  categoriesSpan.textContent = productData.categorie;
-  rateSpan.textContent = productData.rate;
-  viewsSpan.textContent = productData.views;
-  countrySpan.textContent = productData.country;
-  price.textContent = checkCurrencyType(
-    productData.currency,
-    productData.price
-  );
-  img.src = productData.img;
-  console.log(productData.name);
-  // APPENDING ELEMENTS
-  descriptions.append(br, descriptionsSpan);
-  categories.appendChild(categoriesSpan);
-  rate.appendChild(rateSpan);
-  views.appendChild(viewsSpan);
-  country.appendChild(countrySpan);
-
-  info.append(
-    name,
-    descriptions,
+    inputImage,
     categories,
-    rate,
-    views,
     country,
-    price,
-    addButton,
-    cancelButton
-  );
-  product.append(img, info);
-  container.appendChild(product);
-  return containers.appendChild(container);
-};
-
-const boxItemCard = (itemData, containers, buttonText = String()) => {
-  const item = document.createElement("div");
-  const img = document.createElement("img");
-  const name = document.createElement("div");
-  const button = document.createElement("button");
-
-  item.className = "item";
-  item.id = itemData.id
-  name.className = "item-name";
-  button.className = "btn";
-  if (buttonText.trim() === "cart" || buttonText.trim() === "checkout") {
-    button.classList.add("btn-danger");
-    button.textContent = "REMOVE";
-    button.id = "remove-cart-item";
-  } else if (buttonText.trim() === "search") {
-    button.classList.add("btn-good");
-    button.textContent = "BUY";
-  } else {
-    button.textContent = buttonText.toUpperCase();
-  }
-  name.textContent = itemData.name;
-  img.src = itemData.img;
-  item.append(img, name, button);
-  return containers.appendChild(item);
-};
-
-const cartBox = (containers, type = String()) => {
-  const container = document.createElement("div");
-  const cart = document.createElement("div");
-  if (type.trim() === "cart" || type.trim() === "checkout") {
-    const title = document.createElement("h2");
-    title.textContent = "Your cart list";
-    cart.className = "cart";
-    container.className = `cart-container`;
-    container.appendChild(title);
-  } else if (type.trim() === "search") {
-    cart.className = "cart";
-    container.className = `cart-container`;
-  }
-  container.appendChild(cart);
-  return containers.appendChild(container);
-};
-
-const checkoutProduct = (containers, cartDataList) => {
-  const container = document.createElement("div");
-  const dialog = document.createElement("div");
-  const legend = document.createElement("legend");
-  const checkout = document.createElement("form");
-  const name = document.createElement("input");
-  const pkgName = document.createElement("input");
-  const address = document.createElement("input");
-  const country = document.createElement("input");
-  const postal = document.createElement("input");
-  const card = document.createElement("input");
-  const csc = document.createElement("input");
-  const expire = document.createElement("input");
-  const confirmButton = document.createElement("button");
-  const cancelButton = document.createElement("button");
-  // ADD CLASS
-  container.className = "checkout-container";
-  checkout.className = "checkout";
-  dialog.className = "checkout-dialog";
-  confirmButton.classList.add("btn", "btn-primary");
-  cancelButton.classList.add("btn", "btn-primary");
-  // ADD ATTRIBUTE
-  name.setAttribute("type", "text");
-  pkgName.setAttribute("type", "text");
-  address.setAttribute("type", "text");
-  country.setAttribute("type", "text");
-  postal.setAttribute("type", "number");
-  card.setAttribute("type", "number");
-  csc.setAttribute("type", "number");
-  expire.setAttribute("type", "date");
-
-  name.setAttribute("name", "name");
-  pkgName.setAttribute("name", "pagkageName");
-  address.setAttribute("name", "address");
-  country.setAttribute("name", "country");
-  postal.setAttribute("name", "postalCode");
-  card.setAttribute("name", "card");
-  csc.setAttribute("name", "csc");
-  expire.setAttribute("name", "expireDate");
-
-  name.setAttribute("placeholder", "Card holder name");
-  pkgName.setAttribute("placeholder", "Name your packages");
-  address.setAttribute("placeholder", "Your address");
-  country.setAttribute("placeholder", "Country");
-  postal.setAttribute("placeholder", "Postal code");
-  card.setAttribute("placeholder", "Credit card number");
-  csc.setAttribute("placeholder", "CSC code");
-
-  postal.setAttribute("inputmode", "numeric");
-  card.setAttribute("inputmode", "numeric");
-
-  card.setAttribute("maxlength", "19");
-  csc.setAttribute("maxlength", "3");
-  pkgName.setAttribute("maxlength", "80");
-  // ADD CONTENT TO ELEMENT
-  confirmButton.textContent = "CONFIRMS";
-  cancelButton.textContent = "CANCEL";
-  legend.textContent = "CHECKOUT";
-  checkout.append(
-    legend,
-    pkgName,
-    address,
-    country,
-    postal,
-    name,
-    card,
-    csc,
-    expire,
+    inputPrice,
+    currency,
+    inputDescription,
     confirmButton,
     cancelButton
   );
-  container.append(cartBox(cartDataList, container, "checkout"), checkout);
-  dialog.appendChild(container);
-  console.log(container);
-  return containers.appendChild(dialog);
+  container.appendChild(form);
+  return container;
 };
 
-const searchMenu = (containers, type = String()) => {
-  const container = document.createElement("div");
-  container.id = `${type}-search-section`;
+export const creatCheckout = (name, productData) => {
+  // CREATE A CHECKOUT TEMPLATE:
+  // For the available styles name plaese use name = "checkout"
+  const container = document.createElement("form");
+  const form = document.createElement("form");
+  const legend = document.createElement("legend");
+  const inputName = document.createElement("input");
+  const inputImage = document.createElement("input");
+  const inputPrice = document.createElement("input");
 
-  const formSearch = document.createElement("form");
-  const searchBox = document.createElement("input");
-  const searchIcon = document.createElement("i");
+  container.id = `${name}-form-container`;
+  form.className = `${name}-form`;
+  legend.className = `${name}-legend`;
+  legend.textContent = `${name.toUpperCase()} PRODUCT`;
+  inputName.setAttribute("name", "name");
+  inputImage.setAttribute("name", "img");
+  inputPrice.setAttribute("name", "price");
 
-  formSearch.className = "search-box";
+  inputName.setAttribute("placeholder", "Card name");
+  inputImage.setAttribute("placeholder", "Images URL");
+  inputPrice.setAttribute("placeholder", "Prices");
 
-  searchBox.setAttribute("type", "search");
-  searchBox.setAttribute("name", "searchBox");
-  searchBox.setAttribute("placeholder", "Search");
-  searchIcon.classList.add("material-icons", "btn", "btn-primary");
-  searchIcon.textContent = "search";
+  inputName.setAttribute("type", "text");
+  inputImage.setAttribute("type", "url");
+  inputPrice.setAttribute("type", "number");
 
-  if (type.trim() === "body") {
-    const formFilter = document.createElement("form");
-    formFilter.className = "search-filter";
+  const confirmButton = document.createElement("button");
+  const cancelButton = document.createElement("button");
+  confirmButton.classList.add("btn", "btn-good");
+  cancelButton.classList.add("btn", "btn-danger");
+  confirmButton.textContent = `CONFIRMS`;
+  cancelButton.textContent = "CANCEL";
 
-    const categories = document.createElement("select");
-    const country = document.createElement("select");
-    const priceRange = document.createElement("select");
-    const alphabetical = document.createElement("select");
-    categories.setAttribute("name", "categories");
-    country.setAttribute("name", "country");
-    priceRange.setAttribute("name", "priceRange");
-    alphabetical.setAttribute("name", "alphabetical");
+  const country = document.createElement("input");
+  const creditCard = document.createElement("input");
+  const csc = document.createElement("input");
+  const expireDate = document.createElement("input");
+  const address = document.createElement("input");
+  country.setAttribute("name", "country");
+  creditCard.setAttribute("name", "creditCard");
+  csc.setAttribute("name", "cscCode");
+  expireDate.setAttribute("name", "expireDate");
 
-    const categOption1 = document.createElement("option");
-    const categOption2 = document.createElement("option");
-    const categOption3 = document.createElement("option");
-    const categOption4 = document.createElement("option");
-    const categOption5 = document.createElement("option");
-    const categOption6 = document.createElement("option");
-    categOption1.setAttribute("selected", "");
-    categOption1.setAttribute("disabled", "");
-    categOption2.setAttribute("value", "electronics");
-    categOption3.setAttribute("value", "households");
-    categOption4.setAttribute("value", "cloths");
-    categOption5.setAttribute("value", "diy");
-    categOption6.setAttribute("value", "accessories");
-    categOption1.textContent = "Categories";
-    categOption2.textContent = "Electronics";
-    categOption3.textContent = "Households";
-    categOption4.textContent = "Cloths";
-    categOption5.textContent = "DIY Items";
-    categOption6.textContent = "Accessories";
+  country.setAttribute("type", "text");
+  creditCard.setAttribute("type", "tel");
+  csc.setAttribute("type", "number");
+  expireDate.setAttribute("type", "date");
 
-    const countryOption1 = document.createElement("option");
-    const countryOption2 = document.createElement("option");
-    const countryOption3 = document.createElement("option");
-    const countryOption4 = document.createElement("option");
-    countryOption1.setAttribute("selected", "");
-    countryOption1.setAttribute("disabled", "");
-    countryOption2.setAttribute("value", "kh");
-    countryOption3.setAttribute("value", "uk");
-    countryOption4.setAttribute("value", "us");
-    countryOption1.textContent = "Country";
-    countryOption2.textContent = "Cambodia";
-    countryOption3.textContent = "United Kindom";
-    countryOption4.textContent = "United State";
+  creditCard.setAttribute("inputmode", "numeric");
+  creditCard.setAttribute("pattern", "[0-9s]{13,19}");
+  creditCard.setAttribute("maxlength", "19");
+  csc.setAttribute("maxlength", "3");
+  csc.setAttribute("minlength", "3");
 
-    const priceOption1 = document.createElement("option");
-    const priceOption2 = document.createElement("option");
-    const priceOption3 = document.createElement("option");
-    priceOption1.setAttribute("selected", "");
-    priceOption1.setAttribute("disabled", "");
-    priceOption2.setAttribute("value", "low");
-    priceOption3.setAttribute("value", "high");
-    priceOption1.textContent = "Price range";
-    priceOption2.textContent = "Low to High";
-    priceOption3.textContent = "High to Low";
+  country.setAttribute("placeholder", "Country");
+  creditCard.setAttribute("placeholder", "Credit card number");
+  csc.setAttribute("placeholder", "CSC Code");
+  expireDate.setAttribute("placeholder", "Expire data");
+  address.setAttribute("placeholder", "Your address");
 
-    const alphabetOption1 = document.createElement("option");
-    const alphabetOption2 = document.createElement("option");
-    const alphabetOption3 = document.createElement("option");
-    alphabetOption1.setAttribute("selected", "");
-    alphabetOption1.setAttribute("disabled", "");
-    alphabetOption2.setAttribute("value", "a");
-    alphabetOption3.setAttribute("value", "z");
+  const sideImage = document.createElement("img");
+  sideImage.src = productData.img;
 
-    alphabetOption1.textContent = "From letters";
-    alphabetOption2.textContent = "A to Z";
-    alphabetOption3.textContent = "Z to A";
-    categories.append(
-      categOption1,
-      categOption2,
-      categOption3,
-      categOption4,
-      categOption5,
-      categOption6
-    );
-    country.append(
-      countryOption1,
-      countryOption2,
-      countryOption3,
-      countryOption4
-    );
-    formFilter.append(categories, country, priceRange, alphabetical);
-    alphabetical.append(alphabetOption1, alphabetOption2, alphabetOption3);
-    priceRange.append(priceOption1, priceOption2, priceOption3);
-    container.prepend(formFilter);
+  form.append(
+    legend,
+    inputImage,
+    inputPrice,
+    country,
+    address,
+    inputName,
+    creditCard,
+    csc,
+    expireDate,
+    confirmButton,
+    cancelButton
+  );
+  container.append(sideImage, form);
+  return container;
+};
+
+export const createCard = (cardData, buttonName = [], buttonType) => {
+  // CARD TEMPLATE FOR THE PRODUCT
+  // Take 3 input data infromation for card, button name, button type.
+  const card = document.createElement("div");
+  const body = document.createElement("div");
+  const image = document.createElement("img");
+  const title = document.createElement("div");
+  const content = document.createElement("p");
+  const rate = document.createElement("div");
+  const views = document.createElement("div");
+  const footer = document.createElement("div");
+  const price = document.createElement("div");
+  // Check user mode then if matcher then add class to button:
+  buttonName.forEach((name, index) => {
+    const button = document.createElement("button");
+    button.textContent = name;
+    button.id = `${name.toLowerCase()}-card`;
+    footer.prepend(button);
+    if (buttonType === "customer") {
+      button.classList.add("btn", "btn-primary");
+      if (index === 0) {
+        button.classList.add("btn-good");
+      }
+    } else if (buttonType === "editor") {
+      button.classList.add("btn", "btn-good");
+      if (index === 1) {
+        button.classList.add("btn-danger");
+      }
+    }
+  });
+
+  // Create star sign which fit with rate values:
+  for(let i=0; i< Math.round(cardData.views); i++){
+    const i = document.createElement("i");
+    i.className = "material-icons";
+    i.textContent = "star";
+    rate.textContent = `Rate : `;
+    rate.appendChild(i)
   }
 
-  formSearch.append(searchBox, searchIcon);
-  container.prepend(formSearch);
-  return containers.appendChild(container);
+  card.className = `card`;
+  body.className = `card-body`;
+  title.className = `card-title`;
+  content.className = `card-description`;
+  rate.className = `card-rate`;
+  views.className = `card-views`;
+  image.className = `card-image`;
+  footer.className = `card-footer`;
+  price.className = `card-price`;
+  card.id = cardData.id;
+
+  image.src = cardData.img;
+  title.textContent = cardData.name;
+  content.textContent = cardData.description;
+  views.textContent = `Views : ${cardData.views}`;
+  image.textContent = cardData.image;
+  price.textContent = priceCheckToText(cardData.currency, cardData.price);
+
+  footer.prepend(price);
+  body.append(title, content, rate, views);
+  card.append(image, body, footer);
+  return card;
 };
 
-const productViewsContainer = (containers, viewMode = String()) => {
-  const container = document.createElement("div");
-  const subContainer = document.createElement("div");
-  const addButton = document.createElement("button");
-  addButton.classList.add("btn", "btn-good");
-  addButton.id = "add";
-  addButton.textContent = "ADD ITEM";
-  // productDataList.forEach((item) => {
-  //   productCard(item, viewMode, subContainer);
-  // });
-  if (viewMode === "edit") {
-    container.appendChild(addButton);
-  }
-  container.appendChild(subContainer);
-  subContainer.className = "product";
-  container.className = "product-display";
-  return containers.appendChild(container);
-};
-
-const deploySearchBox = (container, dataList = Array(), type = String()) => {
-  const searchResultContainer = container;
-  const search = searchMenu(searchResultContainer, type);
-  cartBox(dataList, search, "search");
-  return search;
-};
-
-const checkCurrencyType = (type, amount) => {
-  let price = null;
-  if (type === "usd") {
-    price = String(amount) + "$";
-  } else if (type === "riels") {
-    price = String(amount) + "៛";
+// CONVERT PRICE TO TEXT:
+const priceCheckToText = (type, amount) => {
+  let price = "";
+  if (type === "euro") {
+    price = `€ ${amount}`;
+  } else if (type === "dollar") {
+    price = `$ ${amount}`;
+  } else if (type === "riel") {
+    price = `៛ ${amount}`;
   }
   return price;
-};
-
-
-// EXPORT FUNCTION:
-export {
-  deploySearchBox,
-  productViewsContainer,
-  productForm,
-  productCard,
-  productDetails,
-  boxItemCard,
-  cartBox,
-  checkoutProduct,
-  searchMenu,
 };
