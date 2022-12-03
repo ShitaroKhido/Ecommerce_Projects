@@ -39,7 +39,7 @@ const createProduct = (productDataList = Array, form) => {
   newData.currency = form.currency.value;
   productDataList.push(newData);
   console.log(productDataList);
-  saveProductInfo("productDataList", productDataList);
+  saveToLocalStorage("productDataList", productDataList);
   renderUI(productDataList, userMode[1]);
 };
 const saveProductInfo = (productId, productDataList = Array, form) => {
