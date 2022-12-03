@@ -134,7 +134,7 @@ const productForm = (formMode = String(), containers) => {
     cancelButton
   );
   container.appendChild(form);
-  containers.appendChild(container);
+  return containers.appendChild(container);
 };
 
 const productCard = (data, cardMode = String(), container) => {
@@ -171,6 +171,7 @@ const productCard = (data, cardMode = String(), container) => {
     button.textContent = "EDIT ITEM";
     const delBtn = document.createElement("button");
     delBtn.classList.add("btn", "btn-danger");
+    delBtn.id = "delete-product";
     delBtn.textContent = "DELETE";
     cardFoot.append(delBtn);
   } else if (cardMode.trim() === "sell") {
@@ -497,9 +498,17 @@ const productViewsContainer = (
   viewMode = String()
 ) => {
   const container = document.createElement("div");
+  const subContainer = document.createElement("div");
+  const addButton = document.createElement("button");
+  addButton.classList.add("btn", "btn-good");
+  addButton.id = "add";
+  addButton.textContent = "ADD ITEM"
   productDataList.forEach((item) => {
-    productCard(item, viewMode, container);
+    productCard(item, viewMode, subContainer);
   });
+  container.appendChild(addButton);
+  container.appendChild(subContainer)
+  subContainer.className = "product"
   container.className = "product-display";
   return containers.appendChild(container);
 };

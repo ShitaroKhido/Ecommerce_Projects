@@ -37,8 +37,15 @@
 
 .product-display{
     padding: 2rem;
-    @include goFlex(center,center);
+    @include goFlex(center,center,column);
     flex-wrap: wrap;
     // display: grid;
     gap: 2rem;
+    .product{
+        padding: 2rem;
+        @include goFlex(center,center);
+        flex-wrap: wrap;
+        // display: grid;
+        gap: 2rem;
+    }
 }
