@@ -19,6 +19,8 @@
         }
         .description{
             overflow: hidden;
+            text-overflow: clip;
+            white-space: nowrap;
             font-size: 14px;
         }
         .rate{
@@ -32,6 +34,7 @@
     }
     &:hover{
         top: -1.5rem;
+        cursor: pointer;
     }
 }
 

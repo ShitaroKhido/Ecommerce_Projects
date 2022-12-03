@@ -163,7 +163,7 @@ const productCard = (data, cardMode = String(), container) => {
   title.textContent = data.name;
   description.textContent = data.description;
   rate.textContent = data.rate;
-  price.textContent = checkCurrencyType(data.currency,data.price);
+  price.textContent = checkCurrencyType(data.currency, data.price);
   // Set ID to each card:
   card.id = data.id;
 
@@ -177,11 +177,12 @@ const productCard = (data, cardMode = String(), container) => {
     cardFoot.append(delBtn);
   } else if (cardMode.trim() === "sell") {
     button.textContent = "BUY";
-    const detailbutton = document.createElement("button")
+    button.id = "buy-product";
+    const detailbutton = document.createElement("button");
     detailbutton.classList.add("btn", "btn-primary");
     detailbutton.id = "details";
-    detailbutton.textContent = "DETAILS"
-    cardFoot.prepend(detailbutton)
+    detailbutton.textContent = "DETAILS";
+    cardFoot.prepend(detailbutton);
   }
   cardFoot.append(button, price);
   cardBody.append(title, description, rate);
@@ -227,6 +228,7 @@ const productDetails = (productData, containers) => {
   addButton.classList.add("btn", "btn-primary");
   cancelButton.classList.add("btn", "btn-primary");
   cancelButton.id = "cancel-detail";
+  addButton.id = "add-to-cart";
 
   // ADD CONTENT TO ELEMENTS
   descriptions.textContent = "Product descriptions: ";
@@ -242,7 +244,10 @@ const productDetails = (productData, containers) => {
   rateSpan.textContent = productData.rate;
   viewsSpan.textContent = productData.views;
   countrySpan.textContent = productData.country;
-  price.textContent = checkCurrencyType(productData.currency,productData.price);
+  price.textContent = checkCurrencyType(
+    productData.currency,
+    productData.price
+  );
   img.src = productData.img;
   console.log(productData.name);
   // APPENDING ELEMENTS
@@ -268,31 +273,33 @@ const productDetails = (productData, containers) => {
   return containers.appendChild(container);
 };
 
-const boxItemCard = (data, containers, buttonText = String()) => {
+const boxItemCard = (itemData, containers, buttonText = String()) => {
   const item = document.createElement("div");
   const img = document.createElement("img");
   const name = document.createElement("div");
   const button = document.createElement("button");
 
   item.className = "item";
+  item.id = itemData.id
   name.className = "item-name";
   button.className = "btn";
   if (buttonText.trim() === "cart" || buttonText.trim() === "checkout") {
     button.classList.add("btn-danger");
     button.textContent = "REMOVE";
+    button.id = "remove-cart-item";
   } else if (buttonText.trim() === "search") {
     button.classList.add("btn-good");
     button.textContent = "BUY";
   } else {
     button.textContent = buttonText.toUpperCase();
   }
-  name.textContent = data.name;
-  img.src = data.img;
+  name.textContent = itemData.name;
+  img.src = itemData.img;
   item.append(img, name, button);
   return containers.appendChild(item);
 };
 
-const cartBox = (cartDataList, containers, type = String()) => {
+const cartBox = (containers, type = String()) => {
   const container = document.createElement("div");
   const cart = document.createElement("div");
   if (type.trim() === "cart" || type.trim() === "checkout") {
@@ -305,9 +312,6 @@ const cartBox = (cartDataList, containers, type = String()) => {
     cart.className = "cart";
     container.className = `cart-container`;
   }
-  cartDataList.forEach((item) => {
-    boxItemCard(item, cart, type);
-  });
   container.appendChild(cart);
   return containers.appendChild(container);
 };
@@ -499,24 +503,21 @@ const searchMenu = (containers, type = String()) => {
   return containers.appendChild(container);
 };
 
-const productViewsContainer = (
-  containers,
-  viewMode = String()
-) => {
+const productViewsContainer = (containers, viewMode = String()) => {
   const container = document.createElement("div");
   const subContainer = document.createElement("div");
   const addButton = document.createElement("button");
   addButton.classList.add("btn", "btn-good");
   addButton.id = "add";
-  addButton.textContent = "ADD ITEM"
+  addButton.textContent = "ADD ITEM";
   // productDataList.forEach((item) => {
   //   productCard(item, viewMode, subContainer);
   // });
-  if (viewMode === "edit"){
+  if (viewMode === "edit") {
     container.appendChild(addButton);
   }
-  container.appendChild(subContainer)
-  subContainer.className = "product"
+  container.appendChild(subContainer);
+  subContainer.className = "product";
   container.className = "product-display";
   return containers.appendChild(container);
 };
@@ -532,11 +533,13 @@ const checkCurrencyType = (type, amount) => {
   let price = null;
   if (type === "usd") {
     price = String(amount) + "$";
-  } else if (type === "riels"){
+  } else if (type === "riels") {
     price = String(amount) + "៛";
   }
   return price;
 };
+
+
 // EXPORT FUNCTION:
 export {
   deploySearchBox,

@@ -12,6 +12,7 @@ import {
   searchMenu,
 } from "./views_template.js";
 import { data } from "./data_structure.js";
+
 // FUNCTIONS-----------------------------------------
 // HIDE and SHOW Element functions:
 const hideElement = (element = Node) => (element.style.display = "none");
@@ -31,6 +32,10 @@ const renderUI = (container = null, dataList = [], mode = "") => {
       addForm = productForm("add", container);
       hideElement(editForm);
       hideElement(addForm);
+    }
+    if (mode === "sell") {
+      userCart = cartBox(container, "cart");
+      hideElement(userCart);
     }
     dataList.forEach((item) => {
       productCard(item, mode, productContainer.querySelector(".product"));
@@ -109,18 +114,53 @@ const idGenerator = () => {
   return digit.toString(36);
 };
 
-const addToCart = (event, container) => {
-  cartList.push(event.target.id);
-  cartCount += cartList.lenght;
+const addToCart = (id, cartList, productDataList) => {
+  cartCount = cartList.lenght;
+  productDataList.forEach((item) => {
+    if (id === item.id) {
+      cartList.push(item);
+      console.log(item);
+    }
+  });
 };
 
+const removeFromCart = (cartList, id) => {
+  cartList.forEach((item) => {
+    if (id = item.id) {
+      cartList.pop(item);
+    }
+  });
+};
+
+const countViews = (itme) => itme.views++;
+
+const toggleDisplay = (element, displayType) => {
+  if (element.style.display == "none") {
+    showElement(element, displayType);
+  } else {
+    hideElement(element);
+  }
+};
+
+const refreshCart = (cartList, cartContainer) => {
+  // This code function is for cart refreching fix, which is need to be injected.
+  cartContainer.innerHTML = ""
+  
+  cartList.forEach(item=>{
+    boxItemCard(item, cartContainer, "cart");
+  })
+};
 // MAIN CODE-----------------------------------------
 // saveToLocalStorage("productDataList", data)
 const productDataList = loadFromLocalStorage("productDataList");
 const container = document.querySelector(".container");
-let usermode = "buy";
+let usermode = "sell";
 let editForm = null;
 let addForm = null;
+let cartCount = 0;
+let cartList = [];
+let userCart = null;
+let productID = null;
 if (usermode === "edit") {
   renderUI(container, productDataList, "edit");
   container.addEventListener("click", (event) => {
@@ -140,13 +180,15 @@ if (usermode === "edit") {
       hideElement(editForm);
     } else if (event.target.id === "edit-product") {
       showElement(editForm, "flex");
+      editProduct(targetID, productDataList, editForm.querySelector("form"));
     } else if (event.target.id === "delete-product") {
       deleteProduct(productDataList, targetID, container);
     }
   });
 } else if ((usermode = "buy")) {
   renderUI(container, productDataList, "sell");
-  container.addEventListener("click", (event) => {
+  const cartContainer = document.querySelector(".cart-container .cart");
+  document.addEventListener("click", (event) => {
     event.stopPropagation();
     event.preventDefault();
     let targetID = event.target.parentElement.parentElement.id;
@@ -155,13 +197,37 @@ if (usermode === "edit") {
       productDataList.forEach((item) => {
         if (targetID === item.id) {
           productDetails(item, container);
+          countViews(item);
+          saveToLocalStorage("productDataList", productDataList);
         }
       });
+      productID = targetID;
     } else if (
       event.target.id === "cancel-detail" ||
       event.target.id === "product-details-container"
     ) {
-      document.querySelector("#product-details").remove();
+      document.querySelector("#product-details-container").remove();
+    } else if (event.target.id === "add-to-cart") {
+      console.log(productID);
+      addToCart(productID, cartList, productDataList);
+      renderUI(container, productDataList, "sell");
+      console.log(cartList);
+    } else if (event.target.id === "buy-product") {
+      console.log(targetID)
+      addToCart(targetID, cartList, productDataList);
+      refreshCart(cartList, cartContainer);
+    } else if (event.target.id === "cart") {
+      toggleDisplay(userCart, "block");
+      // Dues to the cartBox function that needed to be called everytime to display:
+      // This code below could help patch and refresh the the list of cart item
+      console.log(cartContainer)
+      refreshCart(cartList, cartContainer);
+    } else if (event.target.id === "remove-cart-item") {
+      console.log(event.target.parentElement.id);
+      refreshCart(cartList, cartContainer);
+      removeFromCart(cartList, event.target.parentElement.id);
+      console.log(cartList);
     }
   });
+  console.log("added");
 }

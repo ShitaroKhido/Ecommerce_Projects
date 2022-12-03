@@ -1,6 +1,8 @@
 .cart-container{
+    top: 4rem;
     right:0;
     position: absolute;
+    background-color: $second-color-2;
     @include container($textAlign:center, $min-w:20rem, $max-w:40rem);
     .cart{
         .item{
@@ -26,4 +28,10 @@
     button{
         margin: 1rem;
     }
+}
+#cart-on{
+    display: block;
+}
+#cart-off {
+    display: block;
 }
