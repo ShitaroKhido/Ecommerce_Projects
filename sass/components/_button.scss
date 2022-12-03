@@ -16,5 +16,11 @@
         background-color: transparent;
         @include button-style(red, $second-color-2)
     }
+    &-good{
+        padding: 0.5rem 1rem;
+        border: 2px solid transparent;
+        background-color: transparent;
+        @include button-style(lightgreen, $second-color-2)
+    }
 
 }

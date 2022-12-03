@@ -1,14 +1,27 @@
-const productList = [
-    {
-      name: "Tablet",
-      description: "This is the card description",
-      img: "imgs/logo/Logo-color.png",
-      price: 259,
-      currency: "usd",
-      rate: 2,
-      views: 10,
-      id: 1340,
-      country: "uk",
-      categorie: "electronic"
-    },
-  ];
+const data = [
+  {
+    name: "Tablet",
+    description: "This is the card description",
+    categorie: "electronic",
+    rate: 2,
+    views: 10,
+    img: "imgs/logo/Logo-color.png",
+    country: "uk",
+    price: 259,
+    currency: "usd",
+    id: 1340,
+  },
+  {
+    name: "Tablet",
+    description: "This is the card description",
+    categorie: "electronic",
+    rate: 4,
+    views: 20,
+    img: "imgs/logo/Logo-color.png",
+    country: "uk",
+    price: 2359,
+    currency: "usd",
+    id: 1540,
+  },
+];
+export {data};

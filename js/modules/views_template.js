@@ -1,7 +1,7 @@
 // THIS FILES CONTAINS UI FUNCTION WHICH GENERATE THE ELEMENT INTO HTML FILES.
 
 // FUNCTIONS------------------------------------------
-const productForm = (formMode, containers) => {
+const productForm = (formMode = String(), containers) => {
   // CREATE DOM ELEMENTS.
   const container = document.createElement("div");
   const form = document.createElement("form");
@@ -86,8 +86,7 @@ const productForm = (formMode, containers) => {
   // ADD MORE ELEMENT HERE IF NECESSARY
   const cancelButton = document.createElement("button");
   cancelButton.classList.add("btn", "btn-primary");
-  cancelButton.textContent = "CANCEL"
-
+  cancelButton.textContent = "CANCEL";
 
   // CHECK form mode MODE
   button.classList.add("btn", "btn-primary");
@@ -138,7 +137,7 @@ const productForm = (formMode, containers) => {
   containers.appendChild(container);
 };
 
-const productCard = (data, cardMode, container) => {
+const productCard = (data, cardMode = String(), container) => {
   // CREATE ELEMENTS
   const card = document.createElement("div");
   const cardBody = document.createElement("div");
@@ -158,7 +157,7 @@ const productCard = (data, cardMode, container) => {
   description.className = "description";
   rate.className = "rate";
   price.className = "price";
-  button.classList.add("btn", "btn-primary");
+  button.classList.add("btn", "btn-good");
   // Add contents
   img.src = data.img;
   title.textContent = data.name;
@@ -171,7 +170,7 @@ const productCard = (data, cardMode, container) => {
   if (cardMode.trim() === "edit") {
     button.textContent = "EDIT ITEM";
     const delBtn = document.createElement("button");
-    delBtn.classList.add("btn", "btn-primary");
+    delBtn.classList.add("btn", "btn-danger");
     delBtn.textContent = "DELETE";
     cardFoot.append(delBtn);
   } else if (cardMode.trim() === "sell") {
@@ -261,7 +260,7 @@ const productDetails = (productData, containers) => {
   return containers.appendChild(container);
 };
 
-const boxItemCard = (data, buttonText, containers) => {
+const boxItemCard = (data, containers, buttonText = String()) => {
   const item = document.createElement("div");
   const img = document.createElement("img");
   const name = document.createElement("div");
@@ -270,12 +269,12 @@ const boxItemCard = (data, buttonText, containers) => {
   item.className = "item";
   name.className = "item-name";
   button.className = "btn";
-  if (buttonText.trim() === "cart" || buttonText.trim() === "search" || buttonText.trim()==="checkout") {
+  if (buttonText.trim() === "cart" || buttonText.trim() === "checkout") {
     button.classList.add("btn-danger");
     button.textContent = "REMOVE";
-    if (buttonText.trim() === "search"){
-      button.textContent = "BUY";
-    }
+  } else if (buttonText.trim() === "search") {
+    button.classList.add("btn-good");
+    button.textContent = "BUY";
   } else {
     button.textContent = buttonText.toUpperCase();
   }
@@ -285,21 +284,21 @@ const boxItemCard = (data, buttonText, containers) => {
   return containers.appendChild(item);
 };
 
-const cartBox = (cartDataList, containers, type) => {
+const cartBox = (cartDataList, containers, type = String()) => {
   const container = document.createElement("div");
   const cart = document.createElement("div");
-  // cart.className = type.trim()==="cart" || type.trim()==="checkout"? type.trim(): "search";
-  // container.className = type.trim()==="cart" || type.trim()==="checkout"? `${type.trim()}-container`: "search-container";
-  
-  if (type.trim()==="cart" || type.trim()==="checkout"){
+  if (type.trim() === "cart" || type.trim() === "checkout") {
     const title = document.createElement("h2");
     title.textContent = "Your cart list";
     cart.className = "cart";
     container.className = `cart-container`;
     container.appendChild(title);
-  } 
+  } else if (type.trim() === "search") {
+    cart.className = "cart";
+    container.className = `cart-container`;
+  }
   cartDataList.forEach((item) => {
-    boxItemCard(item, type, cart);
+    boxItemCard(item, cart, type);
   });
   container.appendChild(cart);
   return containers.appendChild(container);
@@ -336,7 +335,7 @@ const checkoutProduct = (containers, cartDataList) => {
   csc.setAttribute("type", "number");
   expire.setAttribute("type", "date");
 
-  name.setAttribute("name", "name")
+  name.setAttribute("name", "name");
   pkgName.setAttribute("name", "pagkageName");
   address.setAttribute("name", "address");
   country.setAttribute("name", "country");
@@ -376,178 +375,151 @@ const checkoutProduct = (containers, cartDataList) => {
     confirmButton,
     cancelButton
   );
-  container.append(
-    cartBox(cartDataList, container, "checkout"),
-    checkout,
-  );
-  dialog.appendChild(container)
-  console.log(container)
+  container.append(cartBox(cartDataList, container, "checkout"), checkout);
+  dialog.appendChild(container);
+  console.log(container);
   return containers.appendChild(dialog);
 };
 
-const searchMenu = (containers)=>{
+const searchMenu = (containers, type = String()) => {
   const container = document.createElement("div");
-  container.className = "search-section";
-  
+  container.id = `${type}-search-section`;
+
   const formSearch = document.createElement("form");
-  const formFilter = document.createElement("form");
-  formSearch.className = "search-box";
-  formFilter.className = "search-filter";
-  
   const searchBox = document.createElement("input");
   const searchIcon = document.createElement("i");
+
+  formSearch.className = "search-box";
+
   searchBox.setAttribute("type", "search");
   searchBox.setAttribute("name", "searchBox");
   searchBox.setAttribute("placeholder", "Search");
-  searchIcon.classList.add("material-icons", "btn","btn-primary");
+  searchIcon.classList.add("material-icons", "btn", "btn-primary");
   searchIcon.textContent = "search";
 
-  const categories = document.createElement("select");
-  const country = document.createElement("select");
-  const priceRange = document.createElement("select");
-  const alphabetical = document.createElement("select");
-  categories.setAttribute("name", "categories");
-  country.setAttribute("name", "country");
-  priceRange.setAttribute("name", "priceRange");
-  alphabetical.setAttribute("name", "alphabetical");
+  if (type.trim() === "body") {
+    const formFilter = document.createElement("form");
+    formFilter.className = "search-filter";
 
-  const categOption1 = document.createElement("option");
-  const categOption2 = document.createElement("option");
-  const categOption3 = document.createElement("option");
-  const categOption4 = document.createElement("option");
-  const categOption5 = document.createElement("option");
-  const categOption6 = document.createElement("option");
-  categOption1.setAttribute("selected", "");
-  categOption1.setAttribute("disabled", "");
-  categOption2.setAttribute("value", "electronics");
-  categOption3.setAttribute("value", "households");
-  categOption4.setAttribute("value", "cloths");
-  categOption5.setAttribute("value", "diy");
-  categOption6.setAttribute("value", "accessories"); 
-  categOption1.textContent = "Categories";
-  categOption2.textContent = "Electronics";
-  categOption3.textContent = "Households";
-  categOption4.textContent = "Cloths";
-  categOption5.textContent = "DIY Items";
-  categOption6.textContent = "Accessories";
+    const categories = document.createElement("select");
+    const country = document.createElement("select");
+    const priceRange = document.createElement("select");
+    const alphabetical = document.createElement("select");
+    categories.setAttribute("name", "categories");
+    country.setAttribute("name", "country");
+    priceRange.setAttribute("name", "priceRange");
+    alphabetical.setAttribute("name", "alphabetical");
 
-  const countryOption1 = document.createElement("option");
-  const countryOption2 = document.createElement("option");
-  const countryOption3 = document.createElement("option");
-  const countryOption4 = document.createElement("option");
-  countryOption1.setAttribute("selected", "");
-  countryOption1.setAttribute("disabled", "");
-  countryOption2.setAttribute("value", "kh");
-  countryOption3.setAttribute("value", "uk");
-  countryOption4.setAttribute("value", "us");
-  countryOption1.textContent = "Country";
-  countryOption2.textContent = "Cambodia";
-  countryOption3.textContent = "United Kindom";
-  countryOption4.textContent = "United State";
+    const categOption1 = document.createElement("option");
+    const categOption2 = document.createElement("option");
+    const categOption3 = document.createElement("option");
+    const categOption4 = document.createElement("option");
+    const categOption5 = document.createElement("option");
+    const categOption6 = document.createElement("option");
+    categOption1.setAttribute("selected", "");
+    categOption1.setAttribute("disabled", "");
+    categOption2.setAttribute("value", "electronics");
+    categOption3.setAttribute("value", "households");
+    categOption4.setAttribute("value", "cloths");
+    categOption5.setAttribute("value", "diy");
+    categOption6.setAttribute("value", "accessories");
+    categOption1.textContent = "Categories";
+    categOption2.textContent = "Electronics";
+    categOption3.textContent = "Households";
+    categOption4.textContent = "Cloths";
+    categOption5.textContent = "DIY Items";
+    categOption6.textContent = "Accessories";
 
-  const priceOption1 = document.createElement("option");
-  const priceOption2 = document.createElement("option");
-  const priceOption3 = document.createElement("option");
-  priceOption1.setAttribute("selected", "");
-  priceOption1.setAttribute("disabled", "");
-  priceOption2.setAttribute("value", "low");
-  priceOption3.setAttribute("value", "high");
-  priceOption1.textContent = "Price range";
-  priceOption2.textContent = "Low to High";
-  priceOption3.textContent = "High to Low";
+    const countryOption1 = document.createElement("option");
+    const countryOption2 = document.createElement("option");
+    const countryOption3 = document.createElement("option");
+    const countryOption4 = document.createElement("option");
+    countryOption1.setAttribute("selected", "");
+    countryOption1.setAttribute("disabled", "");
+    countryOption2.setAttribute("value", "kh");
+    countryOption3.setAttribute("value", "uk");
+    countryOption4.setAttribute("value", "us");
+    countryOption1.textContent = "Country";
+    countryOption2.textContent = "Cambodia";
+    countryOption3.textContent = "United Kindom";
+    countryOption4.textContent = "United State";
 
-  const alphabetOption1 = document.createElement("option");
-  const alphabetOption2 = document.createElement("option");
-  const alphabetOption3 = document.createElement("option");
-  alphabetOption1.setAttribute("selected", "");
-  alphabetOption1.setAttribute("disabled", "");
-  alphabetOption2.setAttribute("value", "a");
-  alphabetOption3.setAttribute("value", "z");
+    const priceOption1 = document.createElement("option");
+    const priceOption2 = document.createElement("option");
+    const priceOption3 = document.createElement("option");
+    priceOption1.setAttribute("selected", "");
+    priceOption1.setAttribute("disabled", "");
+    priceOption2.setAttribute("value", "low");
+    priceOption3.setAttribute("value", "high");
+    priceOption1.textContent = "Price range";
+    priceOption2.textContent = "Low to High";
+    priceOption3.textContent = "High to Low";
 
-  alphabetOption1.textContent = "From letters";
-  alphabetOption2.textContent = "A to Z";
-  alphabetOption3.textContent = "Z to A";
+    const alphabetOption1 = document.createElement("option");
+    const alphabetOption2 = document.createElement("option");
+    const alphabetOption3 = document.createElement("option");
+    alphabetOption1.setAttribute("selected", "");
+    alphabetOption1.setAttribute("disabled", "");
+    alphabetOption2.setAttribute("value", "a");
+    alphabetOption3.setAttribute("value", "z");
 
-  categories.append(
-    categOption1,
-    categOption2,
-    categOption3,
-    categOption4,
-    categOption5,
-    categOption6,
-  );
-  country.append(
-    countryOption1,
-    countryOption2,
-    countryOption3,
-    countryOption4,
-  );
-  priceRange.append(
-    priceOption1,
-    priceOption2,
-    priceOption3
-  );
-  alphabetical.append(
-    alphabetOption1,
-    alphabetOption2,
-    alphabetOption3,
-  );
-  formSearch.append(
-    searchBox,
-    searchIcon,
-  );
-  formFilter.append(
-    categories,
-    country,
-    priceRange,
-    alphabetical
-  );
-  container.append(
-    formSearch,
-    formFilter
-  ),
-  containers.appendChild(container);
-}
+    alphabetOption1.textContent = "From letters";
+    alphabetOption2.textContent = "A to Z";
+    alphabetOption3.textContent = "Z to A";
+    categories.append(
+      categOption1,
+      categOption2,
+      categOption3,
+      categOption4,
+      categOption5,
+      categOption6
+    );
+    country.append(
+      countryOption1,
+      countryOption2,
+      countryOption3,
+      countryOption4
+    );
+    formFilter.append(categories, country, priceRange, alphabetical);
+    alphabetical.append(alphabetOption1, alphabetOption2, alphabetOption3);
+    priceRange.append(priceOption1, priceOption2, priceOption3);
+    container.prepend(formFilter);
+  }
 
-// MAIN CODE-----------------------------------------
-// TESTING TEMPLATE----------------------------------
-const contain = document.querySelector(".container");
-const searchResultContainer = document.querySelectorAll(".search-section")
-const productList = [
-  {
-    name: "Tablet",
-    description: "This is the card description",
-    categorie: "electronic",
-    rate: 2,
-    views: 10,
-    img: "imgs/logo/Logo-color.png",
-    country: "uk",
-    price: 259,
-    currency: "usd",
-    id: 1340,
-  },
-  {
-    name: "Tablet",
-    description: "This is the card description",
-    categorie: "electronic",
-    rate: 4,
-    views: 20,
-    img: "imgs/logo/Logo-color.png",
-    country: "uk",
-    price: 2359,
-    currency: "usd",
-    id: 1540,
-  },
-];
+  formSearch.append(searchBox, searchIcon);
+  container.append(formSearch);
+  return containers.appendChild(container);
+};
 
-// FUNCTION CALL TEST--------------------------
-// cartBox(productList, contain, "cart")
-// searchResultContainer.forEach(searchBox=>{
-//   cartBox(productList, searchBox, "search")
-// })
-// checkoutProduct(contain, productList)
-// productForm("Edit", contain)
-// productForm("Add", contain)
-// productDetails(productList[0], contain)
-// searchMenu(contain)
-// productCard(productList[0], "sell", contain)
+const productViewsContainer = (
+  containers,
+  productDataList = Array(),
+  viewMode = String()
+) => {
+  const container = document.createElement("div");
+  productDataList.forEach((item) => {
+    productCard(item, viewMode, container);
+  });
+  container.className = "product-display";
+  return containers.appendChild(container);
+};
+
+const deploySearchBox = (container, dataList = Array(), type = String()) => {
+  const searchResultContainer = container;
+  const search = searchMenu(searchResultContainer, type);
+  cartBox(dataList, search, "search");
+  return search;
+};
+
+// EXPORT FUNCTION:
+export {
+  deploySearchBox,
+  productViewsContainer,
+  productForm,
+  productCard,
+  productDetails,
+  boxItemCard,
+  cartBox,
+  checkoutProduct,
+  searchMenu,
+};

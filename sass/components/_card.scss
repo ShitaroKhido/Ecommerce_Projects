@@ -36,5 +36,9 @@
 }
 
 .product-display{
-    padding: 10rem;
+    padding: 2rem;
+    @include goFlex(center,center);
+    flex-wrap: wrap;
+    // display: grid;
+    gap: 2rem;
 }

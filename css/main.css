@@ -176,6 +176,21 @@ footer .navbar .nav-link:hover {
   border-color: #FFFFFF;
   background-color: red;
 }
+.btn-good {
+  padding: 0.5rem 1rem;
+  border: 2px solid transparent;
+  background-color: transparent;
+  color: lightgreen;
+  background-color: #FFFFFF;
+  border-color: lightgreen;
+  transition: 0.3s color, 0.3s background-color, 0.3s border;
+}
+.btn-good:hover {
+  cursor: pointer;
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+  background-color: lightgreen;
+}
 
 .card {
   position: relative;
@@ -221,88 +236,87 @@ footer .navbar .nav-link:hover {
 }
 
 .product-display {
-  padding: 10rem;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: unset;
+  flex-wrap: wrap;
+  gap: 2rem;
 }
 
-.search-section {
+#body-search-section {
   padding: 4rem 1rem;
   margin: auto;
   min-width: 20rem;
   max-width: 40rem;
 }
-.search-section .search-box {
+#body-search-section .search-box {
   background-color: grey;
   display: flex;
   justify-content: unset;
   align-items: unset;
   flex-direction: unset;
 }
-.search-section .search-box input[type=search] {
+#body-search-section .search-box input[type=search] {
   width: 100%;
   padding: 0.5rem;
   border: none;
   outline: none;
   border: 2px solid #EAEAEA;
 }
-.search-section .search-box input[type=search]:focus {
+#body-search-section .search-box input[type=search]:focus {
   border-color: #00ABB3;
 }
-.search-section .search-box #search:hover {
+#body-search-section .search-box #search:hover {
   cursor: pointer;
 }
-.search-section .search-container {
-  text-align: center;
-  margin-left: unset;
-  margin-right: unset;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 4px 18px 0px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  min-width: 20rem;
-  max-width: 40rem;
-  background-color: #FFFFFF;
+#body-search-section .search-filter {
+  display: flex;
 }
-.search-section .search-container h2 {
-  padding: 1rem;
-  margin: 0;
-  background-color: #00ABB3;
-  color: #FFFFFF;
+#body-search-section .search-filter select {
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  outline: none;
+  border: 2px solid #EAEAEA;
 }
-.search-section .search-container .search .item {
+#body-search-section .search-filter select:focus {
+  border-color: #00ABB3;
+}
+#body-search-section .cart-container {
   position: relative;
-  height: 2rem;
-  padding: 1rem;
+  width: 100%;
+}
+
+#nav-search-section {
+  position: relative;
+  margin: auto;
+  min-width: 20rem;
+  width: 30rem;
+}
+#nav-search-section .search-box {
+  background-color: grey;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: unset;
+  align-items: unset;
   flex-direction: unset;
-  gap: 1rem;
 }
-.search-section .search-container .search .item img {
-  width: 8rem;
-}
-.search-section .search-container .search .item .item-name {
-  overflow: hidden;
-  text-overflow: clip;
-  white-space: nowrap;
-}
-.search-section .search-container .search .item:hover {
-  cursor: pointer;
-  background-color: #00ABB3;
-  color: #FFFFFF;
-}
-.search-section .search-filter {
-  display: flex;
-}
-.search-section .search-filter select {
+#nav-search-section .search-box input[type=search] {
   width: 100%;
   padding: 0.5rem;
   border: none;
   outline: none;
   border: 2px solid #EAEAEA;
 }
-.search-section .search-filter select:focus {
+#nav-search-section .search-box input[type=search]:focus {
   border-color: #00ABB3;
+}
+#nav-search-section .search-box #search:hover {
+  cursor: pointer;
+}
+#nav-search-section .cart-container {
+  width: 100%;
 }
 
 /* clears the ‘X’ from Internet Explorer */
@@ -443,16 +457,17 @@ input[type=search]::-webkit-search-results-decoration {
 }
 
 #product-details-container {
+  top: 0;
   width: 100%;
   height: 100%;
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: unset;
 }
 #product-details-container #product-details {
-  position: -webkit-sticky;
-  position: sticky;
+  background-color: #FFFFFF;
   padding: 4rem;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 4px 18px 0px;
   width: 40rem;
@@ -480,6 +495,14 @@ input[type=search]::-webkit-search-results-decoration {
   font-size: 1.5rem;
 }
 
+@media screen and (max-width: 800px) {
+  #product-details-container {
+    flex-direction: column;
+  }
+  #product-details-container #product-details {
+    flex-direction: column;
+  }
+}
 .cart-container {
   right: 0;
   position: absolute;
