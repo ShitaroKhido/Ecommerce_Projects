@@ -423,6 +423,21 @@ footer .navbar .nav-link:hover {
   background: #3C4048;
 }
 
+.cart {
+  top: 4rem;
+  right: 0rem;
+  position: absolute;
+  width: 20rem;
+  background-color: #00ABB3;
+  box-shadow: rgba(149, 157, 165, 0.8) 0px 8px 14px;
+}
+.cart-title {
+  padding: 1rem;
+  color: #FFFFFF;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

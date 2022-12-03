@@ -1,6 +1,12 @@
 // MAIN FUNTION FILE
 
-import { createForm, creatCheckout, createCard } from "./views_template.js";
+import {
+  createForm,
+  creatCheckout,
+  createCard,
+  cartBox,
+  cartItem,
+} from "./views_template.js";
 import { data } from "./data_structure.js";
 
 // IMPORT-------------------------------------
@@ -17,12 +23,11 @@ const deleteProduct = (productDataList = Array, productId) => {
   productDataList.forEach((item, index) => {
     console.log(productId);
     if (item.id === productId) {
-      productDataList.pop([index])
-      saveToLocalStorage("productDataList", productDataList)
-      renderUI(productDataList,"editor")
+      productDataList.pop([index]);
+      saveToLocalStorage("productDataList", productDataList);
+      renderUI(productDataList, "editor");
     }
   });
-  
 };
 const createProduct = (productDataList = Array, form) => {
   // CREATE PRODUCT DATA AND APPEND IT TO DATA LIST:
@@ -179,22 +184,31 @@ if (input === 1) {
       toggleDisplay(addProductFormContainer);
     }
   });
-} else if(input === 2){
-  renderUI(productDataList, "customer")
+} else if (input === 2) {
+  renderUI(productDataList, "customer");
   // Add details views to container and hide it:
   let productData = productDataList[0];
   const checkoutViews = creatCheckout("checkout", productDataList[0]);
   container.appendChild(checkoutViews);
   toggleDisplay(checkoutViews);
-  container.addEventListener("click", (event) => {
+  // Create and add cart box to container;
+  let myCart = cartBox("user");
+  console.log(myCart);
+  container.appendChild(myCart);
+  toggleDisplay(myCart);
+  // Cart list to store the list of ID of product;
+  let cartList = [];
+  document.addEventListener("click", (event) => {
     // Prevent event bulbbling and default browser action:
     event.preventDefault();
     event.stopPropagation();
     console.log(event.target);
     if (event.target.id === "buy-card") {
-      
     } else if (event.target.id === "details-card") {
-      toggleDisplay(checkoutViews)
-    } 
+      toggleDisplay(checkoutViews);
+    } else if (event.target.id === "cart") {
+      console.log(event);
+      toggleDisplay(myCart);
+    }
   });
 }

@@ -230,12 +230,12 @@ export const createCard = (cardData, buttonName = [], buttonType) => {
   // This line 231 is to prevent the multiple show star bug
   rate.textContent = `Rate : `;
   // Create star sign which fit with rate values:
-  for(let i=0; i< Math.round(cardData.views); i++){
+  for (let i = 0; i < Math.round(cardData.views); i++) {
     const i = document.createElement("i");
     rate.textContent = `Rate : `;
     i.className = "material-icons";
     i.textContent = "star";
-    rate.appendChild(i)
+    rate.appendChild(i);
   }
 
   card.className = `card`;
@@ -262,17 +262,21 @@ export const createCard = (cardData, buttonName = [], buttonType) => {
   return card;
 };
 
-export const cart = (id) => {
+export const cartBox = (id) => {
   const cart = document.createElement("div");
   const title = document.createElement("div");
 
-  cart.className = 'cart'
-  card.id = id;
-  title = "Your cart list";
+  cart.className = "cart";
+  title.className = "cart-title";
+  title.textContent = "Your cart list"
+  
   cart.appendChild(title);
-}
 
-export const cartItem = (productData)=>{
+
+  return cart;
+};
+
+export const cartItem = (productData) => {
   const item = document.createElement("div");
   const img = document.createElement("img");
   const title = document.createElement("div");
@@ -281,17 +285,14 @@ export const cartItem = (productData)=>{
   item.className = "item";
   title.className = "item-title";
   button.classList.add("btn", "btn-good");
-  button.textContent = priceCheckToText(productData.currency, productData.price);
-  
-  item.append(
-    img,
-    title,
-    button,
-  )
+  button.textContent = priceCheckToText(
+    productData.currency,
+    productData.price
+  );
+
+  item.append(img, title, button);
   return item;
-
-}
-
+};
 
 // CONVERT PRICE TO TEXT:
 const priceCheckToText = (type, amount) => {

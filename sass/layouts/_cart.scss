@@ -1,0 +1,14 @@
+.cart{
+    top: 4rem;
+    right: 0.0rem;
+    position: absolute;
+    width: 20rem;
+    background-color: $prime-color;
+    box-shadow: rgba(149, 157, 165, 0.8) 0px 8px 14px;
+    &-title{
+        padding: 1rem;
+        color: $second-color-2;
+        font-size: 1.5rem;
+        font-weight: 800;
+    }
+}
