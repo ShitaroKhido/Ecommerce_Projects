@@ -13,10 +13,7 @@ body {
   align-items: unset;
   flex-direction: column;
 }
-body .container {
-  flex: 1;
-}
-body .container .cover {
+body main .cover {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,6 +21,9 @@ body .container .cover {
   color: #FFFFFF;
   background-color: #00ABB3;
   padding: 3rem;
+}
+body main .container {
+  flex: 1;
 }
 
 .navbar {
@@ -195,7 +195,7 @@ footer .navbar .nav-link:hover {
 .card {
   position: relative;
   top: 0;
-  width: 18rem;
+  width: 20rem;
   height: 24rem;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 4px 8px 0px;
   transition: 0.3s box-shadow, 0.3s top;

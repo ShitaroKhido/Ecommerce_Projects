@@ -163,12 +163,13 @@ const productCard = (data, cardMode = String(), container) => {
   title.textContent = data.name;
   description.textContent = data.description;
   rate.textContent = data.rate;
-  price.textContent = data.price;
+  price.textContent = checkCurrencyType(data.currency,data.price);
   // Set ID to each card:
   card.id = data.id;
 
   if (cardMode.trim() === "edit") {
     button.textContent = "EDIT ITEM";
+    button.id = "edit-product";
     const delBtn = document.createElement("button");
     delBtn.classList.add("btn", "btn-danger");
     delBtn.id = "delete-product";
@@ -176,8 +177,13 @@ const productCard = (data, cardMode = String(), container) => {
     cardFoot.append(delBtn);
   } else if (cardMode.trim() === "sell") {
     button.textContent = "BUY";
+    const detailbutton = document.createElement("button")
+    detailbutton.classList.add("btn", "btn-primary");
+    detailbutton.id = "details";
+    detailbutton.textContent = "DETAILS"
+    cardFoot.prepend(detailbutton)
   }
-  cardFoot.append(price, button);
+  cardFoot.append(button, price);
   cardBody.append(title, description, rate);
   card.append(img, cardBody, cardFoot);
   return container.appendChild(card);
@@ -220,6 +226,7 @@ const productDetails = (productData, containers) => {
   price.className = "price";
   addButton.classList.add("btn", "btn-primary");
   cancelButton.classList.add("btn", "btn-primary");
+  cancelButton.id = "cancel-detail";
 
   // ADD CONTENT TO ELEMENTS
   descriptions.textContent = "Product descriptions: ";
@@ -235,7 +242,7 @@ const productDetails = (productData, containers) => {
   rateSpan.textContent = productData.rate;
   viewsSpan.textContent = productData.views;
   countrySpan.textContent = productData.country;
-  price.textContent = productData.price;
+  price.textContent = checkCurrencyType(productData.currency,productData.price);
   img.src = productData.img;
   console.log(productData.name);
   // APPENDING ELEMENTS
@@ -488,13 +495,12 @@ const searchMenu = (containers, type = String()) => {
   }
 
   formSearch.append(searchBox, searchIcon);
-  container.append(formSearch);
+  container.prepend(formSearch);
   return containers.appendChild(container);
 };
 
 const productViewsContainer = (
   containers,
-  productDataList = Array(),
   viewMode = String()
 ) => {
   const container = document.createElement("div");
@@ -503,10 +509,12 @@ const productViewsContainer = (
   addButton.classList.add("btn", "btn-good");
   addButton.id = "add";
   addButton.textContent = "ADD ITEM"
-  productDataList.forEach((item) => {
-    productCard(item, viewMode, subContainer);
-  });
-  container.appendChild(addButton);
+  // productDataList.forEach((item) => {
+  //   productCard(item, viewMode, subContainer);
+  // });
+  if (viewMode === "edit"){
+    container.appendChild(addButton);
+  }
   container.appendChild(subContainer)
   subContainer.className = "product"
   container.className = "product-display";
@@ -520,6 +528,15 @@ const deploySearchBox = (container, dataList = Array(), type = String()) => {
   return search;
 };
 
+const checkCurrencyType = (type, amount) => {
+  let price = null;
+  if (type === "usd") {
+    price = String(amount) + "$";
+  } else if (type === "riels"){
+    price = String(amount) + "៛";
+  }
+  return price;
+};
 // EXPORT FUNCTION:
 export {
   deploySearchBox,

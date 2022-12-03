@@ -24,26 +24,26 @@ const saveToLocalStorage = (key, data) =>
 // RENDER UI Function:
 const renderUI = (container = null, dataList = [], mode = "") => {
   container.innerHTML = "";
-  if (mode.trim() === "edit" || mode.trim() === "sell") {
-    const productContainer = productViewsContainer(container);
-    if (mode.trim() === "edit") {
-      editContainer = productForm("edit", container);
-      addProductContainer = productForm("add", container);
-      hideElement(editContainer);
-      hideElement(addProductContainer);
+  if (mode === "edit" || mode === "sell") {
+    const productContainer = productViewsContainer(container, mode);
+    if (mode === "edit") {
+      editForm = productForm("edit", container);
+      addForm = productForm("add", container);
+      hideElement(editForm);
+      hideElement(addForm);
     }
     dataList.forEach((item) => {
       productCard(item, mode, productContainer.querySelector(".product"));
     });
-  } else if (mode.trim() === "search") {
+  } else if (mode === "search") {
     let searchResult = [];
     deploySearchBox(container, searchResult, "body");
   }
 };
 // CREATE PRODUCT Data function"
-const createProduct = (container,dataList, form) => {
+const createProduct = (container, dataList, form) => {
   let data = {};
-  console.log(form)
+  console.log(form);
   data.name = form.name.value;
   data.description = form.description.value;
   data.categorie = form.categories.value;
@@ -56,7 +56,7 @@ const createProduct = (container,dataList, form) => {
   data.id = idGenerator();
   dataList.push(data);
   saveToLocalStorage("productDataList", dataList);
-  renderUI(container, dataList, "edit")
+  renderUI(container, dataList, "edit");
 };
 // EDIT PRODUCT Data funciton:
 const editProduct = (id = String, dataList = Array, form) => {
@@ -74,11 +74,10 @@ const editProduct = (id = String, dataList = Array, form) => {
 };
 
 const saveProduct = (id = String, dataList = Array, form) => {
-  
-  console.log("...." ,id)
+  console.log("....", id);
   dataList.forEach((data) => {
     if (data.id === id) {
-      console.log("....")
+      console.log("....");
       data.name = form.name.value;
       data.description = form.description.value;
       data.categories = form.categories.value;
@@ -88,7 +87,7 @@ const saveProduct = (id = String, dataList = Array, form) => {
       data.currency = form.currency.value;
     }
     // mainContainer.innerHTML = "";
-    renderUI(mainContainer, productDataList, "edit");
+    renderUI(container, productDataList, "edit");
     return saveToLocalStorage("productDataList", dataList);
   });
 };
@@ -106,65 +105,63 @@ const deleteProduct = (dataList = Array(), id = String(), container) => {
 
 const idGenerator = () => {
   // Generate random ID form each second count:
-  let digit = Date.now()
+  let digit = Date.now();
   return digit.toString(36);
-}
+};
+
+const addToCart = (event, container) => {
+  cartList.push(event.target.id);
+  cartCount += cartList.lenght;
+};
+
 // MAIN CODE-----------------------------------------
 // saveToLocalStorage("productDataList", data)
 const productDataList = loadFromLocalStorage("productDataList");
-let editContainer = null;
-let addProductContainer = null;
+const container = document.querySelector(".container");
+let usermode = "buy";
 let editForm = null;
-let addForm = null
-let productId = null;
-// Rendering UI:
-const productContainer = document.querySelector(".product-display");
-const mainContainer = document.querySelector(".container");
-// Get the main navigation bar container:
-const navSearchContainer = document.querySelector("#nav-search");
-searchMenu(navSearchContainer,"nav")
-// Searh result on navigationbar:
-const navSearchResult = document.querySelector("#nav-search #nav-search-section");
-cartBox(productDataList, navSearchResult, "search")
-
-// EVENT LISTENER FORM THE MAIN CONTAINER:
-mainContainer.addEventListener("click", (event) => {
-  event.preventDefault();
-  event.stopPropagation();
-  let targetId = event.target.parentElement.parentElement.id;
-  console.log("work!!!");
-  if (
-    event.target.textContent.trim() === "EDIT ITEM" &&
-    event.target.parentElement.parentElement.className === "card"
-  ) {
-    productId = event.target.parentElement.parentElement.id;
-    console.log(productId)
-    showElement(editContainer, "flex");
-    editForm = editContainer.querySelector("#edit-item-form");
-    editProduct(targetId, productDataList, editForm);
-  } else if (
-    event.target.id === "edit-item-container" ||
-    event.target.textContent.trim() === "CANCEL" ||
-    event.target.textContent.trim() === "SAVE"
-  ) {
-    if (event.target.id === "edit-product") {
-      saveProduct(productId, productDataList, editForm);
-    } else {
-      hideElement(editContainer);
-      hideElement(addProductContainer);
-      console.log("CANCEL");
+let addForm = null;
+if (usermode === "edit") {
+  renderUI(container, productDataList, "edit");
+  container.addEventListener("click", (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+    let targetID = event.target.parentElement.parentElement.id;
+    console.log(event.target);
+    if (event.target.id === "add") {
+      showElement(addForm, "flex");
+    } else if (event.target.id === "add-product") {
+      createProduct(container, productDataList, addForm.querySelector("form"));
+    } else if (
+      event.target.id === "add-product" ||
+      event.target.textContent === "CANCEL"
+    ) {
+      hideElement(addForm);
+      hideElement(editForm);
+    } else if (event.target.id === "edit-product") {
+      showElement(editForm, "flex");
+    } else if (event.target.id === "delete-product") {
+      deleteProduct(productDataList, targetID, container);
     }
-    hideElement(editContainer);
-  } else if (event.target.id === "delete-product") {
-    deleteProduct(productDataList, targetId, mainContainer);
-  } else if (event.target.id === "add") {
-    showElement(addProductContainer, "flex")
-    addForm = addProductContainer.querySelector("#add-item-form")
-    console.log(addForm)
-  } 
-  else if (event.target.id === "add-product"){
-    console.log(event.target.id)
-    console.log(addForm)
-    createProduct( mainContainer,productDataList, addForm);
-  }
-});
+  });
+} else if ((usermode = "buy")) {
+  renderUI(container, productDataList, "sell");
+  container.addEventListener("click", (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+    let targetID = event.target.parentElement.parentElement.id;
+    console.log(event.target);
+    if (event.target.id === "details") {
+      productDataList.forEach((item) => {
+        if (targetID === item.id) {
+          productDetails(item, container);
+        }
+      });
+    } else if (
+      event.target.id === "cancel-detail" ||
+      event.target.id === "product-details-container"
+    ) {
+      document.querySelector("#product-details").remove();
+    }
+  });
+}
