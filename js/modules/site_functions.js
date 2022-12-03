@@ -146,6 +146,7 @@ const cardContainer = document.querySelector(".card-container");
 // VARIABLES
 let productDataList = loadFromLocalStorage("productDataList");
 let userMode = ["customer", "editor"];
+// USE input here to change user views 1 for costumer 2 for seller:
 let input = 2;
 // RENDERING UI:
 // Rendering user interface to browser

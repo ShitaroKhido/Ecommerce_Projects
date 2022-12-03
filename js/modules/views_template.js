@@ -138,6 +138,8 @@ export const creatCheckout = (name, productData) => {
 
   inputName.setAttribute("type", "text");
   inputPrice.setAttribute("type", "number");
+  inputPrice.setAttribute("disabled", "");
+  inputPrice.value = priceCheckToText(productData.currency,productData.price);
 
   const confirmButton = document.createElement("button");
   const cancelButton = document.createElement("button");
