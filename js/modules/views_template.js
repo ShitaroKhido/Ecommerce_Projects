@@ -91,17 +91,17 @@ const productForm = (formMode, containers) => {
 
   // CHECK form mode MODE
   button.classList.add("btn", "btn-primary");
-  button.id = `${formMode.trim()}-product`;
+  button.id = `${formMode.trim().toLowerCase()}-product`;
   button.textContent = "SAVE";
-  form.id = `${formMode.trim()}-item-form`;
-  container.id = `${formMode.trim()}-item-container`;
+  form.id = `${formMode.trim().toLowerCase()}-item-form`;
+  container.id = `${formMode.trim().toLowerCase()}-item-container`;
 
-  if (formMode.trim() === "add") {
+  if (formMode.trim().toLowerCase() === "add") {
     textarea.setAttribute("placeholder", "Product descriptions.");
     textarea.setAttribute("required", "");
     button.textContent = formMode.trim().toUpperCase();
   }
-  legend.textContent = `${formMode.trim()}-product`;
+  legend.textContent = `${formMode.trim()} product`;
 
   selectCountry.append(
     selectCountryOne,
@@ -175,7 +175,7 @@ const productCard = (data, cardMode, container) => {
     delBtn.textContent = "DELETE";
     cardFoot.append(delBtn);
   } else if (cardMode.trim() === "sell") {
-    button.textContent = "SELL";
+    button.textContent = "BUY";
   }
   cardFoot.append(price, button);
   cardBody.append(title, description, rate);
@@ -385,9 +385,132 @@ const checkoutProduct = (containers, cartDataList) => {
   return containers.appendChild(dialog);
 };
 
+const searchMenu = (containers)=>{
+  const container = document.createElement("div");
+  container.className = "search-section";
+  
+  const formSearch = document.createElement("form");
+  const formFilter = document.createElement("form");
+  formSearch.className = "search-box";
+  formFilter.className = "search-filter";
+  
+  const searchBox = document.createElement("input");
+  const searchIcon = document.createElement("i");
+  searchBox.setAttribute("type", "search");
+  searchBox.setAttribute("name", "searchBox");
+  searchBox.setAttribute("placeholder", "Search");
+  searchIcon.classList.add("material-icons", "btn","btn-primary");
+  searchIcon.textContent = "search";
 
+  const categories = document.createElement("select");
+  const country = document.createElement("select");
+  const priceRange = document.createElement("select");
+  const alphabetical = document.createElement("select");
+  categories.setAttribute("name", "categories");
+  country.setAttribute("name", "country");
+  priceRange.setAttribute("name", "priceRange");
+  alphabetical.setAttribute("name", "alphabetical");
+
+  const categOption1 = document.createElement("option");
+  const categOption2 = document.createElement("option");
+  const categOption3 = document.createElement("option");
+  const categOption4 = document.createElement("option");
+  const categOption5 = document.createElement("option");
+  const categOption6 = document.createElement("option");
+  categOption1.setAttribute("selected", "");
+  categOption1.setAttribute("disabled", "");
+  categOption2.setAttribute("value", "electronics");
+  categOption3.setAttribute("value", "households");
+  categOption4.setAttribute("value", "cloths");
+  categOption5.setAttribute("value", "diy");
+  categOption6.setAttribute("value", "accessories"); 
+  categOption1.textContent = "Categories";
+  categOption2.textContent = "Electronics";
+  categOption3.textContent = "Households";
+  categOption4.textContent = "Cloths";
+  categOption5.textContent = "DIY Items";
+  categOption6.textContent = "Accessories";
+
+  const countryOption1 = document.createElement("option");
+  const countryOption2 = document.createElement("option");
+  const countryOption3 = document.createElement("option");
+  const countryOption4 = document.createElement("option");
+  countryOption1.setAttribute("selected", "");
+  countryOption1.setAttribute("disabled", "");
+  countryOption2.setAttribute("value", "kh");
+  countryOption3.setAttribute("value", "uk");
+  countryOption4.setAttribute("value", "us");
+  countryOption1.textContent = "Country";
+  countryOption2.textContent = "Cambodia";
+  countryOption3.textContent = "United Kindom";
+  countryOption4.textContent = "United State";
+
+  const priceOption1 = document.createElement("option");
+  const priceOption2 = document.createElement("option");
+  const priceOption3 = document.createElement("option");
+  priceOption1.setAttribute("selected", "");
+  priceOption1.setAttribute("disabled", "");
+  priceOption2.setAttribute("value", "low");
+  priceOption3.setAttribute("value", "high");
+  priceOption1.textContent = "Price range";
+  priceOption2.textContent = "Low to High";
+  priceOption3.textContent = "High to Low";
+
+  const alphabetOption1 = document.createElement("option");
+  const alphabetOption2 = document.createElement("option");
+  const alphabetOption3 = document.createElement("option");
+  alphabetOption1.setAttribute("selected", "");
+  alphabetOption1.setAttribute("disabled", "");
+  alphabetOption2.setAttribute("value", "a");
+  alphabetOption3.setAttribute("value", "z");
+
+  alphabetOption1.textContent = "From letters";
+  alphabetOption2.textContent = "A to Z";
+  alphabetOption3.textContent = "Z to A";
+
+  categories.append(
+    categOption1,
+    categOption2,
+    categOption3,
+    categOption4,
+    categOption5,
+    categOption6,
+  );
+  country.append(
+    countryOption1,
+    countryOption2,
+    countryOption3,
+    countryOption4,
+  );
+  priceRange.append(
+    priceOption1,
+    priceOption2,
+    priceOption3
+  );
+  alphabetical.append(
+    alphabetOption1,
+    alphabetOption2,
+    alphabetOption3,
+  );
+  formSearch.append(
+    searchBox,
+    searchIcon,
+  );
+  formFilter.append(
+    categories,
+    country,
+    priceRange,
+    alphabetical
+  );
+  container.append(
+    formSearch,
+    formFilter
+  ),
+  containers.appendChild(container);
+}
 
 // MAIN CODE-----------------------------------------
+// TESTING TEMPLATE----------------------------------
 const contain = document.querySelector(".container");
 const searchResultContainer = document.querySelectorAll(".search-section")
 const productList = [
@@ -417,12 +540,14 @@ const productList = [
   },
 ];
 
-
-
+// FUNCTION CALL TEST--------------------------
 // cartBox(productList, contain, "cart")
 // searchResultContainer.forEach(searchBox=>{
 //   cartBox(productList, searchBox, "search")
 // })
 // checkoutProduct(contain, productList)
-productForm("edit", contain)
+// productForm("Edit", contain)
+// productForm("Add", contain)
 // productDetails(productList[0], contain)
+// searchMenu(contain)
+// productCard(productList[0], "sell", contain)
