@@ -33,11 +33,11 @@ const createProduct = (productDataList = Array, form) => {
   // CREATE PRODUCT DATA AND APPEND IT TO DATA LIST:
   let newData = {};
   if (
-    (form.name.value.trim()||
-    form.description.value.trim()||
-     form.price.value.trim()||
-    form.country.value.trim()||
-    form.img.value.trim()||
+    (form.name.value.trim()&&
+    form.description.value.trim()&&
+     form.price.value.trim()&&
+    form.country.value.trim()&&
+    form.img.value.trim()&&
     form.currency.value.trim()) !== ""
   ){
     console.log("Tess")
@@ -55,10 +55,9 @@ const createProduct = (productDataList = Array, form) => {
     console.log(productDataList);
     saveToLocalStorage("productDataList", productDataList);
     renderUI(productDataList, userMode[1]);
+    toggleDisplay(addProductFormContainer);
   }else{
-    form.forEach(item =>{
-      item.style.border ="2px solid red";
-    })
+     alert("Alert fill in the blank");
   }
 };
 const saveProductInfo = (productId, productDataList = Array, form) => {
@@ -133,7 +132,7 @@ const addTocart = (id, cartList, productDataList, container) => {
   cartList.push(id);
   updateCartList(productDataList, cartList, container);
 };
-const removeFromCart = () => {};
+const removeFromCart = (id, ) => {};
 // NOTE: Main data key for this site is productDataList.
 // To load data to local storage, use this function:
 // saveToLocalStorage("productDataList", data)
@@ -147,7 +146,7 @@ const cardContainer = document.querySelector(".card-container");
 let productDataList = loadFromLocalStorage("productDataList");
 let userMode = ["customer", "editor"];
 // USE input here to change user views 1 for costumer 2 for seller:
-let input = 2;
+let input = 1;
 // RENDERING UI:
 // Rendering user interface to browser
 if (input === 1) {
@@ -205,7 +204,6 @@ if (input === 1) {
     console.log(event.target);
     if (event.target.textContent === "CONFIRMS") {
       createProduct(productDataList, addForm);
-      toggleDisplay(addProductFormContainer);
     } else if (
       event.target.textContent === "CANCEL" ||
       event.target.id === "add-form-container"
