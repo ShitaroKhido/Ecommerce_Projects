@@ -124,7 +124,6 @@ export const creatCheckout = (name, productData) => {
   const form = document.createElement("form");
   const legend = document.createElement("legend");
   const inputName = document.createElement("input");
-  const inputImage = document.createElement("input");
   const inputPrice = document.createElement("input");
 
   container.id = `${name}-form-container`;
@@ -132,15 +131,12 @@ export const creatCheckout = (name, productData) => {
   legend.className = `${name}-legend`;
   legend.textContent = `${name.toUpperCase()} PRODUCT`;
   inputName.setAttribute("name", "name");
-  inputImage.setAttribute("name", "img");
   inputPrice.setAttribute("name", "price");
 
   inputName.setAttribute("placeholder", "Card name");
-  inputImage.setAttribute("placeholder", "Images URL");
   inputPrice.setAttribute("placeholder", "Prices");
 
   inputName.setAttribute("type", "text");
-  inputImage.setAttribute("type", "url");
   inputPrice.setAttribute("type", "number");
 
   const confirmButton = document.createElement("button");
@@ -182,7 +178,6 @@ export const creatCheckout = (name, productData) => {
 
   form.append(
     legend,
-    inputImage,
     inputPrice,
     country,
     address,

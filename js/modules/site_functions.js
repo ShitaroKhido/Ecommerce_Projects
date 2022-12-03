@@ -32,20 +32,34 @@ const deleteProduct = (productDataList = Array, productId) => {
 const createProduct = (productDataList = Array, form) => {
   // CREATE PRODUCT DATA AND APPEND IT TO DATA LIST:
   let newData = {};
-  newData.name = form.name.value;
-  newData.description = form.description.value;
-  newData.price = form.price.value;
-  newData.categories = form.categories.value;
-  newData.country = form.country.value;
-  newData.img = form.img.value;
-  newData.id = idGenerator();
-  newData.rate = 0;
-  newData.views = 0;
-  newData.currency = form.currency.value;
-  productDataList.push(newData);
-  console.log(productDataList);
-  saveToLocalStorage("productDataList", productDataList);
-  renderUI(productDataList, userMode[1]);
+  if (
+    (form.name.value.trim()||
+    form.description.value.trim()||
+     form.price.value.trim()||
+    form.country.value.trim()||
+    form.img.value.trim()||
+    form.currency.value.trim()) !== ""
+  ){
+    console.log("Tess")
+    newData.name = form.name.value;
+    newData.description = form.description.value;
+    newData.price = form.price.value;
+    newData.categories = form.categories.value;
+    newData.country = form.country.value;
+    newData.img = form.img.value;
+    newData.id = idGenerator();
+    newData.rate = 0;
+    newData.views = 0;
+    newData.currency = form.currency.value;
+    productDataList.push(newData);
+    console.log(productDataList);
+    saveToLocalStorage("productDataList", productDataList);
+    renderUI(productDataList, userMode[1]);
+  }else{
+    form.forEach(item =>{
+      item.style.border ="2px solid red";
+    })
+  }
 };
 const saveProductInfo = (productId, productDataList = Array, form) => {
   // SAVE USER DATA FROM EDIT FOMRS TO DATA LIST:
@@ -205,6 +219,12 @@ if (input === 1) {
   const checkoutViews = creatCheckout("checkout", productDataList[0]);
   container.appendChild(checkoutViews);
   toggleDisplay(checkoutViews);
+  // Checkout button
+  const creatButton = document.createElement("button");
+  creatButton.classList.add("btn", "btn-primary");
+  creatButton.textContent = "CHECKOUT";
+  creatButton.id = "checkout-item";
+  container.prepend(creatButton);
   // Create and add cart box to container;
   let myCart = cartBox("user");
   console.log(myCart);
@@ -227,7 +247,7 @@ if (input === 1) {
       addTocart(targetId, cartList, productDataList, myCart);
       cartCount.textContent = cartList.length;
       console.log(cartList);
-    } else if (event.target.id === "details-card") {
+    } else if (event.target.id === "checkout-item") {
       toggleDisplay(checkoutViews);
     } else if (event.target.id === "cart") {
       console.log(event);
