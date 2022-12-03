@@ -103,8 +103,22 @@ const toggleDisplay = (element, displayType = "flex") => {
   }
 };
 
+const updateCartList = (productDataList, cartList)=>{
+  // Update the cart list UI:
+  cartList.forEach(id =>{
+    productDataList.forEach(item=>{
+      if (item.id === id){
+        cartItem(item);
+      }
+    })
+  })
+}
+
 const idGenerator = () => Date.now().toString(36);
-const addTocart = () => {};
+const addTocart = (id, cartList, productDataList) => {
+  cartList.push(id);
+  updateCartList(productDataList, cartList)
+};
 const removeFromCart = () => {};
 // NOTE: Main data key for this site is productDataList.
 // To load data to local storage, use this function:
@@ -198,12 +212,20 @@ if (input === 1) {
   toggleDisplay(myCart);
   // Cart list to store the list of ID of product;
   let cartList = [];
+  // Count number of item in cart when you add:
+  const cartCount = document.querySelector("#cart-count")
+  cartCount.textContent = cartList.length;
   document.addEventListener("click", (event) => {
     // Prevent event bulbbling and default browser action:
     event.preventDefault();
     event.stopPropagation();
+    // Capture target node id:
+    let targetId = null;
     console.log(event.target);
     if (event.target.id === "buy-card") {
+      targetId = event.target.parentElement.parentElement.id;
+      addTocart(targetId, cartList, productDataList);
+      console.log(cartList)
     } else if (event.target.id === "details-card") {
       toggleDisplay(checkoutViews);
     } else if (event.target.id === "cart") {
