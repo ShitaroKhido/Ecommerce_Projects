@@ -113,7 +113,7 @@ const cardContainer = document.querySelector(".card-container");
 // VARIABLES
 let productDataList = loadFromLocalStorage("productDataList");
 let userMode = ["customer", "editor"];
-let input = 1;
+let input = 2;
 // RENDERING UI:
 // Rendering user interface to browser
 if (input === 1) {
@@ -178,5 +178,19 @@ if (input === 1) {
     ) {
       toggleDisplay(addProductFormContainer);
     }
+  });
+} else if(input === 2){
+  renderUI(productDataList, "customer")
+  const checkoutViews = creatCheckout("checkout", productDataList[0]);
+  container.appendChild(checkoutViews);
+  container.addEventListener("click", (event) => {
+    // Prevent event bulbbling and default browser action:
+    event.preventDefault();
+    event.stopPropagation();
+    console.log(event.target);
+    if (event.target.id === "buy-card") {
+      
+    } else if (event.target.id === "details-card") {
+    } 
   });
 }
