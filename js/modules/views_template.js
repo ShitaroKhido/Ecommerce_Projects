@@ -284,11 +284,10 @@ export const cartItem = (productData) => {
 
   item.className = "item";
   title.className = "item-title";
-  button.classList.add("btn", "btn-good");
-  button.textContent = priceCheckToText(
-    productData.currency,
-    productData.price
-  );
+  title.textContent = productData.name;
+  button.classList.add("btn", "btn-danger");
+  button.textContent = "REMOVE";
+  button.id = "remove-item";
 
   item.append(img, title, button);
   return item;

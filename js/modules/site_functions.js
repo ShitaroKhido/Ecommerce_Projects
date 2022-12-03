@@ -103,21 +103,21 @@ const toggleDisplay = (element, displayType = "flex") => {
   }
 };
 
-const updateCartList = (productDataList, cartList)=>{
+const updateCartList = (productDataList, cartList, container) => {
   // Update the cart list UI:
-  cartList.forEach(id =>{
-    productDataList.forEach(item=>{
-      if (item.id === id){
-        cartItem(item);
+  cartList.forEach((id) => {
+    productDataList.forEach((item) => {
+      if (item.id === id) {
+        container.appendChild(cartItem(item));
       }
-    })
-  })
-}
+    });
+  });
+};
 
 const idGenerator = () => Date.now().toString(36);
-const addTocart = (id, cartList, productDataList) => {
+const addTocart = (id, cartList, productDataList, container) => {
   cartList.push(id);
-  updateCartList(productDataList, cartList)
+  updateCartList(productDataList, cartList, container);
 };
 const removeFromCart = () => {};
 // NOTE: Main data key for this site is productDataList.
@@ -213,7 +213,7 @@ if (input === 1) {
   // Cart list to store the list of ID of product;
   let cartList = [];
   // Count number of item in cart when you add:
-  const cartCount = document.querySelector("#cart-count")
+  const cartCount = document.querySelector("#cart-count");
   cartCount.textContent = cartList.length;
   document.addEventListener("click", (event) => {
     // Prevent event bulbbling and default browser action:
@@ -224,8 +224,9 @@ if (input === 1) {
     console.log(event.target);
     if (event.target.id === "buy-card") {
       targetId = event.target.parentElement.parentElement.id;
-      addTocart(targetId, cartList, productDataList);
-      console.log(cartList)
+      addTocart(targetId, cartList, productDataList, myCart);
+      cartCount.textContent = cartList.length;
+      console.log(cartList);
     } else if (event.target.id === "details-card") {
       toggleDisplay(checkoutViews);
     } else if (event.target.id === "cart") {

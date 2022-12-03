@@ -430,12 +430,29 @@ footer .navbar .nav-link:hover {
   width: 20rem;
   background-color: #00ABB3;
   box-shadow: rgba(149, 157, 165, 0.8) 0px 8px 14px;
+  background-color: #FFFFFF;
+  display: flex;
+  justify-content: unset;
+  align-items: unset;
+  flex-direction: column;
 }
 .cart-title {
+  background-color: #00ABB3;
   padding: 1rem;
   color: #FFFFFF;
   font-size: 1.5rem;
   font-weight: 800;
+}
+.cart .item {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: unset;
+  flex-direction: row;
+}
+.cart .item:hover {
+  background-color: #00ABB3;
+  color: #FFFFFF;
 }
 
 /* Chrome, Safari, Edge, Opera */
