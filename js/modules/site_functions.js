@@ -135,10 +135,10 @@ const addTocart = (id, cartList, productDataList, container) => {
 const removeFromCart = (id, ) => {};
 // NOTE: Main data key for this site is productDataList.
 // To load data to local storage, use this function:
-// saveToLocalStorage("productDataList", data)
 
 // MAIN CODE-----------------------------------
 
+saveToLocalStorage("productDataList", data)
 // CONSTANTS
 const container = document.querySelector(".container");
 const cardContainer = document.querySelector(".card-container");
